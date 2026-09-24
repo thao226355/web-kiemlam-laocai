@@ -186,9 +186,9 @@ if menu == "🏠 1. Tổng quan điều hành":
     with col_map:
         st.markdown("#### 🗺️ Bản đồ hành chính & hiện trạng lâm nghiệp tỉnh Lào Cai")
         sub_tab_img, sub_tab_thematic, sub_tab_gis = st.tabs([
-            "🗺️ Bản đồ Hiện trạng Thực tế (Ảnh GIS QĐ 537)",
-            "📊 Bản đồ Chuyên đề Toàn tỉnh",
-            "🛰️ Bản đồ Tương tác 99 Xã/Phường"
+            "🗺️ BĐ Hiện trạng rừng",
+            "📊 BĐ Chuyên đề",
+            "🛰️ BĐ Tương tác 99 Xã/Phường"
         ])
         
         with sub_tab_img:
@@ -543,7 +543,7 @@ elif menu == "🏛️ 4. Tổ chức & 11 Hạt Kiểm lâm":
     
     c_root1, c_root2, c_root3 = st.columns([1, 2, 1])
     with c_root2:
-        st.success("👑 **LÃNH ĐẠO CHI CỤC KIỂM LÂM TỈNH LÀO CAI**  \n01 Chi cục trưởng & 02 Phó Chi cục trưởng  \n*Đại lộ Trần Hưng Đạo, P. Nam Cường, TP Lào Cai*")
+        st.success("👑 **LÃNH ĐẠO CHI CỤC KIỂM LÂM TỈNH LÀO CAI**  \n01 Chi cục trưởng & 02 Phó Chi cục trưởng  \n*Số 333, đường Điện Biên, phường Yên Bái, tỉnh Lào Cai*")
         
     st.markdown("---")
     

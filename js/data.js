@@ -305,7 +305,7 @@ const CCKL_DATA = {
             phoChiCucTruong: "02 Phó Chi cục trưởng",
             bienCheToanTinh: "Tổng biên chế giao: 472 (427 CC, 17 VC, 28 HĐ) • Thực tế: 461 CCVC",
             trinhDo: "Thạc sỹ: 79 (17,1%) • Đại học: 353 (76,6%) • Lý luận CC, CN: 23 • Trung cấp LLCT: 177",
-            diaChi: "Đại lộ Trần Hưng Đạo, P. Nam Cường, TP Lào Cai",
+            diaChi: "Số 333, đường Điện Biên, phường Yên Bái, tỉnh Lào Cai",
             hotline: "0214.3820.130"
         },
         phongChucNang: [
