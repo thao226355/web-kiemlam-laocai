@@ -194,14 +194,14 @@ if menu == "🏠 1. Tổng quan điều hành":
         with sub_tab_img:
             map_file = Path(__file__).parent / "images" / "ban_do_hien_trang.png"
             if map_file.exists():
-                st.image(str(map_file), caption="Bản đồ Hiện trạng Lâm nghiệp tỉnh Lào Cai - Năm 2025 theo QĐ 537/QĐ-UBND", use_container_width=True)
+                st.image(str(map_file), caption="Bản đồ công bố hiện trạng rừng năm 2025", use_container_width=True)
                 with st.expander("📌 Xem Chú giải & Cơ cấu hiện trạng rừng"):
                     st.markdown("""
                     - **Rừng tự nhiên (Xanh đậm):** 466.715,6 ha (chiếm 54,24% diện tích có rừng).
                     - **Rừng trồng (Xanh mạ):** 393.807,9 ha (chiếm 45,76% diện tích có rừng).
                     - **Đất lâm nghiệp khác (Vàng nhạt):** 133.926 ha.
                     - **Ranh giới xã phường:** Phân định ranh giới 99 xã, phường toàn tỉnh.
-                    - **Ranh giới tỉnh:** Tiếp giáp các tỉnh Lai Châu, Điện Biên, Sơn La, Phú Thọ, Tuyên Quang, Hà Giang và Trung Quốc.
+                    - **Ranh giới tỉnh:** Tiếp giáp các tỉnh Lai Châu, Sơn La, Phú Thọ, Tuyên Quang và Trung Quốc.
                     """)
             else:
                 st.warning("Chưa tìm thấy tệp ảnh `images/ban_do_hien_trang.png`.")
@@ -352,7 +352,7 @@ if menu == "🏠 1. Tổng quan điều hành":
         st.plotly_chart(fig_gauge, use_container_width=True)
         
         st.markdown("""
-        **Phân bố 99 xã theo 5 cấp nguy cơ:**
+        **Phân bố 99 xã, phường theo 5 cấp nguy cơ:**
         - 🔴 **Cấp V (Cực kỳ nguy hiểm):** **14 xã** (*Tả Van, Chế Tạo, Nậm Có, Púng Luông...*)
         - 🟠 **Cấp IV (Nguy hiểm):** **15 xã** (*Bản Hồ, Nậm Xé, Gia Hội, Sơn Lương...*)
         - 🟡 **Cấp III (Cao):** **60 xã**
@@ -586,7 +586,7 @@ elif menu == "📑 5. Thủ tục hành chính (49 TTHC)":
     
     st.markdown("---")
     
-    tab_lookup, tab_list = st.tabs(["🔍 Tra cứu hồ sơ đang giải quyết", "📋 Danh mục 49 TTHC tập trung cấp Bộ"])
+    tab_lookup, tab_list = st.tabs(["🔍 Tra cứu hồ sơ đang giải quyết", "📋 Danh mục 49 TTHC"])
     
     with tab_lookup:
         c_search, c_btn = st.columns([3, 1])
