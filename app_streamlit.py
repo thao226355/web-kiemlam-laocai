@@ -112,11 +112,11 @@ with st.sidebar:
         "CHỌN PHÂN HỆ ĐIỀU HÀNH:",
         [
             "🏠 1. Tổng quan điều hành",
-            "🌲 2. Dữ liệu rừng (99 Xã/Phường)",
+            "🌲 2. Dữ liệu rừng và đất lâm nghiệp",
             "🔥 3. Cảnh cháy rừng & Vi phạm",
-            "🏛️ 4. Tổ chức & 11 Hạt Kiểm lâm",
+            "🏛️ 4. Tổ chức bộ máy",
             "📑 5. Thủ tục hành chính (49 TTHC)",
-            "⚖️ 6. Văn bản pháp luật & QĐ 537"
+            "⚖️ 6. Tài liệu tham khảo"
         ]
     )
     
@@ -135,7 +135,7 @@ with st.sidebar:
 st.markdown("""
 <div class="main-header">
     <h1>Hệ Thống Thông Tin Điều Hành & Dữ Liệu Lâm Nghiệp</h1>
-    <p>Chi cục Kiểm lâm Lào Cai(Quản lý 99 Xã, Phường & 11 Hạt Kiểm lâm)</p>
+    <p>Chi cục Kiểm lâm Lào Cai (Quản lý 99 Xã, Phường & 11 Hạt Kiểm lâm)</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -143,7 +143,7 @@ st.markdown("""
 # PHÂN HỆ 1: TỔNG QUAN ĐIỀU HÀNH (DASHBOARD)
 # ==============================================================================
 if menu == "🏠 1. Tổng quan điều hành":
-    st.markdown("### 📊 Số liệu lâm nghiệp toàn tỉnh(Căn cứ Quyết định số 537/QĐ-UBND)")
+    st.markdown("### 📊 Số liệu lâm nghiệp toàn tỉnh (Quyết định 537/QĐ-UBND)")
     
     kpi1, kpi2, kpi3, kpi4 = st.columns(4)
     with kpi1:
@@ -395,8 +395,8 @@ if menu == "🏠 1. Tổng quan điều hành":
 # ==============================================================================
 # PHÂN HỆ 2: DỮ LIỆU RỪNG (TRA CỨU 99 XÃ & VÙNG KINH TẾ TRỌNG ĐIỂM)
 # ==============================================================================
-elif menu == "🌲 2. Dữ liệu rừng (99 Xã/Phường)":
-    st.markdown("### 🌲 Cơ Sở Dữ Liệu Lâm Nghiệp Toàn Diện")
+elif menu == "🌲 2. Dữ liệu rừng và đất lâm nghiệp":
+    st.markdown("### 🌲 Tổng hợp dữ liệu lâm nghiệp toàn tỉnh")
     
     subtab1, subtab2, subtab3, subtab4 = st.tabs([
         "📋 Biểu 3: Toàn bộ 99 Xã/Phường",
@@ -536,7 +536,7 @@ elif menu == "🔥 3. Cảnh cháy rừng & Vi phạm":
 # ==============================================================================
 # PHÂN HỆ 4: TỔ CHỨC & 11 HẠT KIỂM LÂM
 # ==============================================================================
-elif menu == "🏛️ 4. Tổ chức & 11 Hạt Kiểm lâm":
+elif menu == "🏛️ 4. Tổ chức bộ máy":
     st.markdown("### 🏛️ Sơ đồ cơ cấu tổ chức Chi cục Kiểm lâm Lào Cai")
     
     st.info("📌 **Tổng biên chế toàn tỉnh:** Giao **472 biên chế** (427 Công chức, 17 Viên chức, 28 Hợp đồng). Thực tế đang làm việc: **461 CCVC** (Trình độ Thạc sỹ 17,1%, Đại học 76,6%).")
@@ -570,7 +570,7 @@ elif menu == "🏛️ 4. Tổ chức & 11 Hạt Kiểm lâm":
         st.markdown("- Hạt KL Bắc Hà (39 BC) ; Hạt KL Văn Bàn (38 BC)")
         st.markdown("- Hạt KL Trấn Yên (49 BC) ; Hạt KL Nghĩa Lộ (42 BC)")
         st.markdown("- Hạt KL Lục Yên (34 BC) ; Hạt KL Mù Cang Chải (25 BC)")
-        st.markdown("- Hạt KL KBT Bát Xát (09 BC) | KBT HL-VB (11 BC)")
+        st.markdown("- Hạt KL KBT Bát Xát (09 BC); KBT HL-VB (11 BC)")
 
 # ==============================================================================
 # PHÂN HỆ 5: THỦ TỤC HÀNH CHÍNH (49 TTHC)
@@ -621,7 +621,7 @@ elif menu == "📑 5. Thủ tục hành chính (49 TTHC)":
 # ==============================================================================
 # PHÂN HỆ 6: VĂN BẢN PHÁP LUẬT & QĐ 537
 # ==============================================================================
-elif menu == "⚖️ 6. Văn bản pháp luật & QĐ 537":
+elif menu == "⚖️ 6. Tài liệu tham khảo":
     st.markdown("### ⚖️ Các quy định pháp luật, văn bản cấp tỉnh")
     
     docs = [
