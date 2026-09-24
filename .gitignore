@@ -20,3 +20,9 @@ ENV/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Large media & video generation artifacts (Managed in 5_CreateVideo)
+video_gioi_thieu/
+*.mp4
+*.wav
+*.mp3
