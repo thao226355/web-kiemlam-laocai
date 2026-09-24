@@ -1,6 +1,6 @@
 /**
  * DỮ LIỆU HỆ THỐNG THÔNG TIN ĐIỀU HÀNH & CÔNG KHAI DỮ LIỆU LÂM NGHIỆP
- * CHI CỤC KIỂM LÂM TỈNH LÀO CAI (SÁP NHẬP LÀO CAI + YÊN BÁI)
+ * CHI CỤC KIỂM LÂM TỈNH LÀO CAI
  * Căn cứ:
  * - Quyết định số 537/QĐ-UBND ngày 27/02/2026 của UBND tỉnh Lào Cai
  * - Quyết định số 2336/QĐ-UBND ngày 12/12/2025 giao chỉ tiêu KT-XH năm 2026
@@ -9,7 +9,7 @@
  */
 
 const CCKL_DATA = {
-    // 1. Chỉ số tổng quan toàn tỉnh mới (Lào Cai + Yên Bái)
+    // 1. Chỉ số tổng quan toàn tỉnh Lào Cai
     tongQuan: {
         namDuLieu: 2025,
         thoiDiemCapNhat: "Tháng 05/2026",
@@ -30,7 +30,11 @@ const CCKL_DATA = {
         tyLeChePhuRung: 61.5, // %
         tongSoXaPhuong: 99,
         tongSoHatKiemLam: 11,
-        tongSoBQLRung: 10 // 5 BQL Rừng đặc dụng + 5 BQL Rừng phòng hộ
+        tongSoBQLRung: 10, // 5 BQL Rừng đặc dụng + 5 BQL Rừng phòng hộ
+        soLieuDieuHanh: {
+            tthc: { tongTiepNhan: 20, daGiaiQuyet: 18, dangXuLy: 2, quaHan: 0 },
+            chayRung: { capV: 14, capIV: 15, capIII: 60, capII: 10, capI: 0 }
+        }
     },
 
     // 2. Cơ cấu rừng theo mục đích sử dụng (Biểu 1 - QĐ 537)
@@ -93,19 +97,19 @@ const CCKL_DATA = {
         { id: 8, loai: "UBND cấp xã tạm quản lý", dienTich: 322522.1, tuNhien: 165152.1, trong: 157370.1, tyLe: 37.48 }
     ],
 
-    // 4. Số liệu 11 Hạt Kiểm lâm khu vực toàn tỉnh mới
+    // 4. Số liệu 11 Hạt Kiểm lâm khu vực toàn tỉnh Lào Cai (QĐ số 15/QĐ-CCKL ngày 05/02/2026)
     hatKiemLam: [
-        { id: "bat_xat", ten: "Hạt KL khu vực Bát Xát", diaBan: "Huyện Bát Xát", tongDT: 55236.0, tuNhien: 37964.0, trong: 16669.0, chuaThanhRung: 602.0, chePhu: 57.4, bienChe: 41, capChay: "Cao", fwi: 36.4, truSo: "TT Bát Xát" },
-        { id: "bao_yen", ten: "Hạt KL khu vực Bảo Yên", diaBan: "Huyện Bảo Yên", tongDT: 85779.6, tuNhien: 23941.2, trong: 52726.0, chuaThanhRung: 9111.9, chePhu: 65.5, bienChe: 29, capChay: "Trung bình", fwi: 27.2, truSo: "TT Phố Ràng" },
-        { id: "bao_thang", ten: "Hạt KL khu vực Bảo Thắng", diaBan: "Huyện Bảo Thắng & TP Lào Cai", tongDT: 70821.3, tuNhien: 25941.1, trong: 41420.2, chuaThanhRung: 3460.2, chePhu: 64.7, bienChe: 28, capChay: "Trung bình", fwi: 28.4, truSo: "TT Phố Lu" },
-        { id: "bac_ha", ten: "Hạt KL khu vực Bắc Hà", diaBan: "Huyện Bắc Hà, Si Ma Cai, Mường Khương", tongDT: 49223.5, tuNhien: 31253.8, trong: 15589.5, chuaThanhRung: 2380.1, chePhu: 52.8, bienChe: 39, capChay: "Trung bình", fwi: 26.5, truSo: "TT Bắc Hà" },
-        { id: "van_ban", ten: "Hạt KL khu vực Văn Bàn", diaBan: "Huyện Văn Bàn", tongDT: 81895.0, tuNhien: 56645.8, trong: 20262.7, chuaThanhRung: 4986.7, chePhu: 66.8, bienChe: 38, capChay: "Cao", fwi: 38.6, truSo: "TT Khánh Yên" },
-        { id: "tran_yen", ten: "Hạt KL khu vực Trấn Yên", diaBan: "Huyện Trấn Yên & TP Yên Bái", tongDT: 140016.5, tuNhien: 43301.6, trong: 86720.8, chuaThanhRung: 9994.1, chePhu: 68.2, bienChe: 49, capChay: "Trung bình", fwi: 25.4, truSo: "TT Cổ Phúc, Trấn Yên" },
-        { id: "nghia_lo", ten: "Hạt KL khu vực Nghĩa Lộ", diaBan: "TX Nghĩa Lộ, Văn Chấn, Trạm Tấu", tongDT: 117977.2, tuNhien: 74384.5, trong: 35713.0, chuaThanhRung: 7879.8, chePhu: 58.6, bienChe: 42, capChay: "Cao", fwi: 37.8, truSo: "P. Tân An, TX Nghĩa Lộ" },
-        { id: "luc_yen", ten: "Hạt KL khu vực Lục Yên", diaBan: "Huyện Lục Yên & Yên Bình", tongDT: 89998.9, tuNhien: 25274.0, trong: 59175.9, chuaThanhRung: 5549.2, chePhu: 62.4, bienChe: 34, capChay: "Trung bình", fwi: 24.8, truSo: "TT Yên Thế, Lục Yên" },
-        { id: "mu_cang_chai", ten: "Hạt KL khu vực Mù Cang Chải", diaBan: "Huyện Mù Cang Chải", tongDT: 81918.8, tuNhien: 62764.6, trong: 18160.7, chuaThanhRung: 993.6, chePhu: 69.4, bienChe: 25, capChay: "Rất cao", fwi: 41.5, truSo: "TT Mù Cang Chải" },
-        { id: "kbt_hoang_lien_van_ban", ten: "Hạt KL KBT Hoàng Liên – Văn Bàn", diaBan: "KBT Thiên nhiên HL-VB", tongDT: 28998.5, tuNhien: 28237.5, trong: 294.0, chuaThanhRung: 467.0, chePhu: 88.7, bienChe: 11, capChay: "Cao", fwi: 38.6, truSo: "Xã Nậm Xé, Văn Bàn" },
-        { id: "kbt_bat_xat", ten: "Hạt KL Khu bảo tồn Bát Xát", diaBan: "VQG & KBT Bát Xát", tongDT: 34316.4, tuNhien: 33339.0, trong: 574.0, chuaThanhRung: 403.4, chePhu: 86.2, bienChe: 9, capChay: "Cao", fwi: 37.2, truSo: "Xã Y Tý, Bát Xát" }
+        { id: "bat_xat", ten: "Hạt KL khu vực Bát Xát", diaBan: "13 xã, phường: Bát Xát, A Mú Sung, A Lù, Bản Qua, Bản Xèo, Cốc Mỳ, Dền Thàng, Mường Vi, Nậm Chạc, Nậm Pung, Phìn Ngan, Quang Kim, Trịnh Tường", tongDT: 55236.0, tuNhien: 37964.0, trong: 16669.0, chuaThanhRung: 602.0, chePhu: 57.4, bienChe: 41, capChay: "Cao", fwi: 36.4, truSo: "Xã Bát Xát" },
+        { id: "bao_yen", ten: "Hạt KL khu vực Bảo Yên", diaBan: "8 xã: Bảo Yên, Bảo Hà, Điện Quan, Nghĩa Đô, Tân Dương, Vĩnh Yên, Xuân Hòa, Kim Sơn", tongDT: 85779.6, tuNhien: 23941.2, trong: 52726.0, chuaThanhRung: 9111.9, chePhu: 65.5, bienChe: 29, capChay: "Trung bình", fwi: 27.2, truSo: "Xã Phố Ràng" },
+        { id: "bao_thang", ten: "Hạt KL khu vực Bảo Thắng", diaBan: "8 xã: Bảo Thắng, Phong Niên, Phố Lu, Bản Phiệt, Bản Cầm, Xuân Giao, Phú Nhuận, Gia Phú", tongDT: 70821.3, tuNhien: 25941.1, trong: 41420.2, chuaThanhRung: 3460.2, chePhu: 64.7, bienChe: 28, capChay: "Trung bình", fwi: 28.4, truSo: "Xã Phố Lu" },
+        { id: "bac_ha", ten: "Hạt KL khu vực Bắc Hà", diaBan: "10 xã: Bắc Hà, Bản Liền, Bảo Nhai, Cốc Lầu, Hoàng Thu Phố, Lùng Phình, Nậm Đét, Tả Củ Tỷ, Tả Van Chư, Thải Giàng Phố", tongDT: 49223.5, tuNhien: 31253.8, trong: 15589.5, chuaThanhRung: 2380.1, chePhu: 52.8, bienChe: 39, capChay: "Trung bình", fwi: 26.5, truSo: "Xã Bắc Hà" },
+        { id: "van_ban", ten: "Hạt KL khu vực Văn Bàn", diaBan: "7 xã: Văn Bàn, Chiềng Ken, Dần Thàng, Dương Quỳ, Hòa Mạc, Liêm Phú, Thẩm Dương", tongDT: 81895.0, tuNhien: 56645.8, trong: 20262.7, chuaThanhRung: 4986.7, chePhu: 66.8, bienChe: 38, capChay: "Cao", fwi: 38.6, truSo: "Xã Khánh Yên" },
+        { id: "tran_yen", ten: "Hạt KL khu vực Trấn Yên", diaBan: "16 xã, phường: Trấn Yên, Cổ Phúc, Hưng Khánh, Kiên Thành, Lương Thịnh, Minh Quán, Quy Mông, Y Can, Nam Cường, Bắc Cường, Duyên Hải, Kim Tân, Lào Cai, Pom Hán, Bình Minh, Cốc San", tongDT: 140016.5, tuNhien: 43301.6, trong: 86720.8, chuaThanhRung: 9994.1, chePhu: 68.2, bienChe: 49, capChay: "Trung bình", fwi: 25.4, truSo: "Xã Cổ Phúc, Trấn Yên" },
+        { id: "nghia_lo", ten: "Hạt KL khu vực Nghĩa Lộ", diaBan: "15 xã, phường: Cát Thịnh, Chấn Thịnh, Gia Hội, Nghĩa Lộ, Sơn Thịnh, Suối Giàng, Thượng Bằng La, Tú Lệ, Bản Công, Bản Mù, Hát Lừu, Pá Hu, Pá Lau, Phình Hồ, Xà Hồ", tongDT: 117977.2, tuNhien: 74384.5, trong: 35713.0, chuaThanhRung: 7879.8, chePhu: 58.6, bienChe: 42, capChay: "Cao", fwi: 37.8, truSo: "Phường Tân An, Nghĩa Lộ" },
+        { id: "luc_yen", ten: "Hạt KL khu vực Lục Yên", diaBan: "10 xã: Lục Yên, Cảm Nhân, Khánh Hòa, Lâm Thượng, Mai Sơn, Mường Lai, Tân Lĩnh, Tân Phượng, Tô Mậu, Vĩnh Lạc", tongDT: 89998.9, tuNhien: 25274.0, trong: 59175.9, chuaThanhRung: 5549.2, chePhu: 62.4, bienChe: 34, capChay: "Trung bình", fwi: 24.8, truSo: "Xã Yên Thế, Lục Yên" },
+        { id: "mu_cang_chai", ten: "Hạt KL khu vực Mù Cang Chải", diaBan: "7 xã: Mù Cang Chải, Chế Tạo, Khao Mang, Lao Chải, Mồ Dề, Nậm Có, Púng Luông", tongDT: 81918.8, tuNhien: 62764.6, trong: 18160.7, chuaThanhRung: 993.6, chePhu: 69.4, bienChe: 25, capChay: "Rất cao", fwi: 41.5, truSo: "Xã Mù Cang Chải" },
+        { id: "kbt_hoang_lien_van_ban", ten: "Hạt KL KBT Hoàng Liên – Văn Bàn", diaBan: "2 xã: Minh Lương, Nậm Xé (và rừng đặc dụng thuộc xã Khánh Yên)", tongDT: 28998.5, tuNhien: 28237.5, trong: 294.0, chuaThanhRung: 467.0, chePhu: 88.7, bienChe: 11, capChay: "Cao", fwi: 38.6, truSo: "Xã Nậm Xé, Văn Bàn" },
+        { id: "kbt_bat_xat", ten: "Hạt KL Khu bảo tồn Bát Xát", diaBan: "3 xã: Mường Hum, Dền Sáng, Y Tý", tongDT: 34316.4, tuNhien: 33339.0, trong: 574.0, chuaThanhRung: 403.4, chePhu: 86.2, bienChe: 9, capChay: "Cao", fwi: 37.2, truSo: "Xã Y Tý, Bát Xát" }
     ],
 
     // 5. Toàn bộ 99 Xã/Phường theo Biểu 3 - Quyết định 537/QĐ-UBND
@@ -218,20 +222,20 @@ const CCKL_DATA = {
         capNguyCo: "CAO",
         mauCap: "#e65100",
         thongKeCap: [
-            { cap: "Cấp V (Rất cao)", fwi: "≥ 40", soXa: 2, color: "#d32f2f", bg: "#ffebee" },
+            { cap: "Cấp V (Rất cao)", fwi: "≥ 40", soXa: 14, color: "#d32f2f", bg: "#ffebee" },
             { cap: "Cấp IV (Cao)", fwi: "30 - 39", soXa: 15, color: "#f57c00", bg: "#fff3e0" },
-            { cap: "Cấp III (Trung bình)", fwi: "20 - 29", soXa: 38, color: "#fbc02d", bg: "#fffde7" },
-            { cap: "Cấp II (Thấp)", fwi: "10 - 19", soXa: 35, color: "#689f38", bg: "#f1f8e9" },
-            { cap: "Cấp I (Rất thấp)", fwi: "< 10", soXa: 9, color: "#2e7d32", bg: "#e8f5e9" }
+            { cap: "Cấp III (Trung bình)", fwi: "20 - 29", soXa: 60, color: "#fbc02d", bg: "#fffde7" },
+            { cap: "Cấp II (Thấp)", fwi: "10 - 19", soXa: 10, color: "#689f38", bg: "#f1f8e9" },
+            { cap: "Cấp I (Rất thấp)", fwi: "< 10", soXa: 0, color: "#2e7d32", bg: "#e8f5e9" }
         ],
         diaBanNguyCoCao: [
-            { stt: 1, xa: "Tả Van", hat: "Hạt KL Sa Pa", fwi: 42.1, cap: "Rất cao", nhietDo: "28°C", doAm: "42%" },
-            { stt: 2, xa: "Chế Tạo", hat: "Hạt KL Mù Cang Chải", fwi: 41.5, cap: "Rất cao", nhietDo: "29°C", doAm: "39%" },
-            { stt: 3, xa: "Bản Hồ", hat: "Hạt KL Sa Pa", fwi: 40.5, cap: "Rất cao", nhietDo: "29°C", doAm: "41%" },
-            { stt: 4, xa: "Nậm Xé", hat: "Hạt KL KBT Hoàng Liên - Văn Bàn", fwi: 38.6, cap: "Cao", nhietDo: "31°C", doAm: "45%" },
-            { stt: 5, xa: "Púng Luông", hat: "Hạt KL Mù Cang Chải", fwi: 38.2, cap: "Cao", nhietDo: "27°C", doAm: "47%" },
-            { stt: 6, xa: "Trạm Tấu", hat: "Hạt KL Nghĩa Lộ", fwi: 37.8, cap: "Cao", nhietDo: "30°C", doAm: "48%" },
-            { stt: 7, xa: "Y Tý", hat: "Hạt KL KBT Bát Xát", fwi: 37.2, cap: "Cao", nhietDo: "25°C", doAm: "50%" }
+            { stt: 1, xa: "Tả Van", hat: "Hạt KL khu vực Bát Xát", fwi: 42.1, cap: "Rất cao", nhietDo: "28°C", doAm: "42%" },
+            { stt: 2, xa: "Chế Tạo", hat: "Hạt KL khu vực Mù Cang Chải", fwi: 41.5, cap: "Rất cao", nhietDo: "29°C", doAm: "39%" },
+            { stt: 3, xa: "Bản Hồ", hat: "Hạt KL khu vực Bát Xát", fwi: 40.5, cap: "Rất cao", nhietDo: "29°C", doAm: "41%" },
+            { stt: 4, xa: "Nậm Xé", hat: "Hạt KL KBT Hoàng Liên – Văn Bàn", fwi: 38.6, cap: "Cao", nhietDo: "31°C", doAm: "45%" },
+            { stt: 5, xa: "Púng Luông", hat: "Hạt KL khu vực Mù Cang Chải", fwi: 38.2, cap: "Cao", nhietDo: "27°C", doAm: "47%" },
+            { stt: 6, xa: "Xà Hồ", hat: "Hạt KL khu vực Nghĩa Lộ", fwi: 37.8, cap: "Cao", nhietDo: "30°C", doAm: "48%" },
+            { stt: 7, xa: "Y Tý", hat: "Hạt KL Khu bảo tồn Bát Xát", fwi: 37.2, cap: "Cao", nhietDo: "25°C", doAm: "50%" }
         ],
         duBao3Ngay: [
             { ngay: "25/09/2026", fwi: 37.5, cap: "Cao", nhietDo: "30°C", khaNangMua: "10%" },

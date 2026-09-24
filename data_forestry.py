@@ -1,7 +1,8 @@
 """
-MODULE DỮ LIỆU LÂM NGHIỆP TỈNH LÀO CAI (SÁP NHẬP LÀO CAI + YÊN BÁI)
+MODULE DỮ LIỆU LÂM NGHIỆP TỈNH LÀO CAI
 Căn cứ:
 - Quyết định số 537/QĐ-UBND ngày 27/02/2026 của UBND tỉnh Lào Cai
+- Quyết định số 15/QĐ-CCKL ngày 05/02/2026 của Chi cục Kiểm lâm tỉnh Lào Cai
 - Quyết định số 2336/QĐ-UBND ngày 12/12/2025 giao chỉ tiêu KT-XH năm 2026
 - Quyết định số 1382/QĐ-UBND ngày 23/04/2026 về Đề án Du lịch sinh thái
 - Báo cáo ngành lâm nghiệp cập nhật tháng 5/2026
@@ -78,19 +79,19 @@ CHU_QUAN_LY = [
     {"stt": 8, "chu_quan_ly": "UBND cấp xã tạm quản lý", "tong_dien_tich": 322522.1, "rung_tu_nhien": 165152.1, "rung_trong": 157370.1, "ty_le": 37.48}
 ]
 
-# 4. 11 Hạt Kiểm lâm khu vực kèm tọa độ địa lý
+# 4. 11 Hạt Kiểm lâm khu vực kèm tọa độ địa lý & địa bàn phụ trách (các xã, phường theo QĐ 15/QĐ-CCKL)
 HAT_KIEM_LAM = [
-    {"id": "bat_xat", "ten": "Hạt KL khu vực Bát Xát", "dia_ban": "Huyện Bát Xát", "tong_dt": 55236.0, "tu_nhien": 37964.0, "trong": 16669.0, "chua_thanh_rung": 602.0, "che_phu": 57.4, "bien_che": 41, "cap_chay": "Cao", "fwi": 36.4, "lat": 22.56, "lon": 103.78, "tru_so": "TT Bát Xát"},
-    {"id": "bao_yen", "ten": "Hạt KL khu vực Bảo Yên", "dia_ban": "Huyện Bảo Yên", "tong_dt": 85779.6, "tu_nhien": 23941.2, "trong": 52726.0, "chua_thanh_rung": 9111.9, "che_phu": 65.5, "bien_che": 29, "cap_chay": "Trung bình", "fwi": 27.2, "lat": 22.25, "lon": 104.34, "tru_so": "TT Phố Ràng"},
-    {"id": "bao_thang", "ten": "Hạt KL khu vực Bảo Thắng", "dia_ban": "Huyện Bảo Thắng & TP Lào Cai", "tong_dt": 70821.3, "tu_nhien": 25941.1, "trong": 41420.2, "chua_thanh_rung": 3460.2, "che_phu": 64.7, "bien_che": 28, "cap_chay": "Trung bình", "fwi": 28.4, "lat": 22.38, "lon": 104.16, "tru_so": "TT Phố Lu"},
-    {"id": "bac_ha", "ten": "Hạt KL khu vực Bắc Hà", "dia_ban": "Huyện Bắc Hà, Si Ma Cai, Mường Khương", "tong_dt": 49223.5, "tu_nhien": 31253.8, "trong": 15589.5, "chua_thanh_rung": 2380.1, "che_phu": 52.8, "bien_che": 39, "cap_chay": "Trung bình", "fwi": 26.5, "lat": 22.54, "lon": 104.28, "tru_so": "TT Bắc Hà"},
-    {"id": "van_ban", "ten": "Hạt KL khu vực Văn Bàn", "dia_ban": "Huyện Văn Bàn", "tong_dt": 81895.0, "tu_nhien": 56645.8, "trong": 20262.7, "chua_thanh_rung": 4986.7, "che_phu": 66.8, "bien_che": 38, "cap_chay": "Cao", "fwi": 38.6, "lat": 22.05, "lon": 104.05, "tru_so": "TT Khánh Yên"},
-    {"id": "tran_yen", "ten": "Hạt KL khu vực Trấn Yên", "dia_ban": "Huyện Trấn Yên & TP Yên Bái", "tong_dt": 140016.5, "tu_nhien": 43301.6, "trong": 86720.8, "chua_thanh_rung": 9994.1, "che_phu": 68.2, "bien_che": 49, "cap_chay": "Trung bình", "fwi": 25.4, "lat": 21.72, "lon": 104.85, "tru_so": "TT Cổ Phúc, Trấn Yên"},
-    {"id": "nghia_lo", "ten": "Hạt KL khu vực Nghĩa Lộ", "dia_ban": "TX Nghĩa Lộ, Văn Chấn, Trạm Tấu", "tong_dt": 117977.2, "tu_nhien": 74384.5, "trong": 35713.0, "chua_thanh_rung": 7879.8, "che_phu": 58.6, "bien_che": 42, "cap_chay": "Cao", "fwi": 37.8, "lat": 21.60, "lon": 104.50, "tru_so": "P. Tân An, TX Nghĩa Lộ"},
-    {"id": "luc_yen", "ten": "Hạt KL khu vực Lục Yên", "dia_ban": "Huyện Lục Yên & Yên Bình", "tong_dt": 89998.9, "tu_nhien": 25274.0, "trong": 59175.9, "chua_thanh_rung": 5549.2, "che_phu": 62.4, "bien_che": 34, "cap_chay": "Trung bình", "fwi": 24.8, "lat": 22.12, "lon": 104.72, "tru_so": "TT Yên Thế, Lục Yên"},
-    {"id": "mu_cang_chai", "ten": "Hạt KL khu vực Mù Cang Chải", "dia_ban": "Huyện Mù Cang Chải", "tong_dt": 81918.8, "tu_nhien": 62764.6, "trong": 18160.7, "chua_thanh_rung": 993.6, "che_phu": 69.4, "bien_che": 25, "cap_chay": "Rất cao", "fwi": 41.5, "lat": 21.85, "lon": 104.08, "tru_so": "TT Mù Cang Chải"},
-    {"id": "kbt_hoang_lien_van_ban", "ten": "Hạt KL KBT Hoàng Liên – Văn Bàn", "dia_ban": "KBT Thiên nhiên HL-VB (Nậm Xé)", "tong_dt": 28998.5, "tu_nhien": 28237.5, "trong": 294.0, "chua_thanh_rung": 467.0, "che_phu": 88.7, "bien_che": 11, "cap_chay": "Cao", "fwi": 38.6, "lat": 22.02, "lon": 103.95, "tru_so": "Xã Nậm Xé, Văn Bàn"},
-    {"id": "kbt_bat_xat", "ten": "Hạt KL Khu bảo tồn Bát Xát", "dia_ban": "VQG & KBT Bát Xát (Y Tý)", "tong_dt": 34316.4, "tu_nhien": 33339.0, "trong": 574.0, "chua_thanh_rung": 403.4, "che_phu": 86.2, "bien_che": 9, "cap_chay": "Cao", "fwi": 37.2, "lat": 22.62, "lon": 103.62, "tru_so": "Xã Y Tý, Bát Xát"}
+    {"id": "bat_xat", "ten": "Hạt KL khu vực Bát Xát", "dia_ban": "13 xã, phường: Xã Bát Xát, Bản Xèo, Trịnh Tường, A Mú Sung, Tả Phìn, Ngũ Chỉ Sơn, Hợp Thành, Cốc San, Tả Van, Bản Hồ; Phường Sa Pa, Lào Cai, Cam Đường", "so_xa": 13, "tong_dt": 55236.0, "tu_nhien": 37964.0, "trong": 16669.0, "chua_thanh_rung": 602.0, "che_phu": 57.4, "bien_che": 41, "cap_chay": "Cao", "fwi": 36.4, "lat": 22.56, "lon": 103.78, "tru_so": "Xã Bát Xát"},
+    {"id": "bao_yen", "ten": "Hạt KL khu vực Bảo Yên", "dia_ban": "8 xã: Xã Bảo Yên, Bảo Hà, Nghĩa Đô, Phúc Khánh, Xuân Hòa, Thượng Hà, Lâm Giang, Khánh Hòa", "so_xa": 8, "tong_dt": 85779.6, "tu_nhien": 23941.2, "trong": 52726.0, "chua_thanh_rung": 9111.9, "che_phu": 65.5, "bien_che": 29, "cap_chay": "Trung bình", "fwi": 27.2, "lat": 22.25, "lon": 104.34, "tru_so": "Xã Bảo Yên"},
+    {"id": "bao_thang", "ten": "Hạt KL khu vực Bảo Thắng", "dia_ban": "8 xã: Xã Bảo Thắng, Xuân Quang, Phong Hải, Gia Phú, Tằng Loỏng, Cốc Lầu, Bảo Nhai, Mường Bo", "so_xa": 8, "tong_dt": 70821.3, "tu_nhien": 25941.1, "trong": 41420.2, "chua_thanh_rung": 3460.2, "che_phu": 64.7, "bien_che": 28, "cap_chay": "Trung bình", "fwi": 28.4, "lat": 22.38, "lon": 104.16, "tru_so": "Xã Bảo Thắng"},
+    {"id": "bac_ha", "ten": "Hạt KL khu vực Bắc Hà", "dia_ban": "10 xã: Xã Bắc Hà, Bản Liền, Tả Củ Tỷ, Lùng Phình, Pha Long, Cao Sơn, Bản Lầu, Mường Khương, Si Ma Cai, Sín Chéng", "so_xa": 10, "tong_dt": 49223.5, "tu_nhien": 31253.8, "trong": 15589.5, "chua_thanh_rung": 2380.1, "che_phu": 52.8, "bien_che": 39, "cap_chay": "Trung bình", "fwi": 26.5, "lat": 22.54, "lon": 104.28, "tru_so": "Xã Bắc Hà"},
+    {"id": "van_ban", "ten": "Hạt KL khu vực Văn Bàn", "dia_ban": "7 xã: Xã Văn Bàn, Khánh Yên, Võ Lao, Chiềng Ken, Dương Quỳ, Nậm Chày, Châu Quế", "so_xa": 7, "tong_dt": 81895.0, "tu_nhien": 56645.8, "trong": 20262.7, "chua_thanh_rung": 4986.7, "che_phu": 66.8, "bien_che": 38, "cap_chay": "Cao", "fwi": 38.6, "lat": 22.05, "lon": 104.05, "tru_so": "Xã Khánh Yên"},
+    {"id": "tran_yen", "ten": "Hạt KL khu vực Trấn Yên", "dia_ban": "16 xã, phường: Xã Trấn Yên, Hưng Khánh, Lương Thịnh, Việt Hồng, Quy Mông, Xuân Ái, Phong Dụ Hạ, Phong Dụ Thượng, Đông Cuông, Tân Hợp, Mậu A, Mỏ Vàng; Phường Yên Bái, Âu Lâu, Nam Cường, Văn Phú", "so_xa": 16, "tong_dt": 140016.5, "tu_nhien": 43301.6, "trong": 86720.8, "chua_thanh_rung": 9994.1, "che_phu": 68.2, "bien_che": 49, "cap_chay": "Trung bình", "fwi": 25.4, "lat": 21.72, "lon": 104.85, "tru_so": "Xã Trấn Yên"},
+    {"id": "luc_yen", "ten": "Hạt KL khu vực Lục Yên", "dia_ban": "10 xã: Xã Lâm Thượng, Tân Lĩnh, Lục Yên, Mường Lai, Phúc Lợi, Bảo Ái, Yên Bình, Thác Bà, Yên Thành, Cảm Nhân", "so_xa": 10, "tong_dt": 89998.9, "tu_nhien": 25274.0, "trong": 59175.9, "chua_thanh_rung": 5549.2, "che_phu": 62.4, "bien_che": 34, "cap_chay": "Trung bình", "fwi": 24.8, "lat": 22.12, "lon": 104.72, "tru_so": "Xã Lục Yên"},
+    {"id": "nghia_lo", "ten": "Hạt KL khu vực Nghĩa Lộ", "dia_ban": "15 xã, phường: Xã Hạnh Phúc, Tà Xi Láng, Phình Hồ, Trạm Tấu, Gia Hội, Sơn Lương, Liên Sơn, Văn Chấn, Cát Thịnh, Thượng Bằng La, Nghĩa Tâm, Chấn Thịnh; Phường Trung Tâm, Cầu Thia, Nghĩa Lộ", "so_xa": 15, "tong_dt": 117977.2, "tu_nhien": 74384.5, "trong": 35713.0, "chua_thanh_rung": 7879.8, "che_phu": 58.6, "bien_che": 42, "cap_chay": "Cao", "fwi": 37.8, "lat": 21.60, "lon": 104.50, "tru_so": "Phường Nghĩa Lộ"},
+    {"id": "mu_cang_chai", "ten": "Hạt KL khu vực Mù Cang Chải", "dia_ban": "7 xã: Xã Mù Cang Chải, Chế Tạo, Lao Chải, Khao Mang, Púng Luông, Nậm Có, Tú Lệ", "so_xa": 7, "tong_dt": 81918.8, "tu_nhien": 62764.6, "trong": 18160.7, "chua_thanh_rung": 993.6, "che_phu": 69.4, "bien_che": 25, "cap_chay": "Rất cao", "fwi": 41.5, "lat": 21.85, "lon": 104.08, "tru_so": "Xã Mù Cang Chải"},
+    {"id": "kbt_hoang_lien_van_ban", "ten": "Hạt KL KBT Hoàng Liên – Văn Bàn", "dia_ban": "3 xã: Xã Minh Lương, Nậm Xé (và rừng đặc dụng xã Khánh Yên)", "so_xa": 3, "tong_dt": 28998.5, "tu_nhien": 28237.5, "trong": 294.0, "chua_thanh_rung": 467.0, "che_phu": 88.7, "bien_che": 11, "cap_chay": "Cao", "fwi": 38.6, "lat": 22.02, "lon": 103.95, "tru_so": "Xã Nậm Xé"},
+    {"id": "kbt_bat_xat", "ten": "Hạt KL Khu bảo tồn Bát Xát", "dia_ban": "3 xã: Xã Mường Hum, Dền Sáng, Y Tý", "so_xa": 3, "tong_dt": 34316.4, "tu_nhien": 33339.0, "trong": 574.0, "chua_thanh_rung": 403.4, "che_phu": 86.2, "bien_che": 9, "cap_chay": "Cao", "fwi": 37.2, "lat": 22.62, "lon": 103.62, "tru_so": "Xã Y Tý"}
 ]
 
 # 5. Biểu 3: 99 Xã/Phường toàn tỉnh
@@ -233,3 +234,36 @@ DANH_MUC_TTHC = [
     {"stt": 24, "ma": "1.011471.H38", "ten": "Phê duyệt Phương án khai thác gỗ, lâm sản loài thông thường thuộc thẩm quyền UBND xã", "cap": "Cấp xã", "thoi_han": "07 ngày", "muc_do": "Một phần"},
     {"stt": 25, "ma": "1.012694.H38", "ten": "Chuyển mục đích sử dụng rừng sang mục đích khác đối với cá nhân", "cap": "Cấp xã", "thoi_han": "20 ngày", "muc_do": "Một phần"}
 ]
+
+# 8. Số liệu quản lý điều hành (Cập nhật chuẩn theo dữ liệu công bố)
+SO_LIEU_DIEU_HANH = {
+    "tthc": {
+        "tiep_nhan": 20,
+        "da_giai_quyet": 18,
+        "dang_giai_quyet": 2,
+        "qua_han": 0
+    },
+    "canh_bao_chay": {
+        "cap_v": 14,
+        "cap_iv": 15,
+        "cap_iii": 60,
+        "cap_ii": 10,
+        "cap_i": 0
+    },
+    "san_xuat_lam_nghiep": {
+        "trong_rung": "500 ha",
+        "khai_thac_go": "1.000 m³",
+        "san_xuat_giong": "1 triệu cây",
+        "co_so_che_bien": "100 cơ sở",
+        "co_so_gay_nuoi": "100 cơ sở",
+        "gia_tri_san_xuat": "10 tỷ đồng"
+    },
+    "dich_vu_mtr": {
+        "dien_tich_cung_ung": "800.000 ha",
+        "so_tien_chi_tra": "150 tỷ đồng"
+    },
+    "vi_pham_phap_luat": {
+        "tong_so_vu": "20 vụ",
+        "thu_nop_ngan_sach": "1 tỷ đồng"
+    }
+}

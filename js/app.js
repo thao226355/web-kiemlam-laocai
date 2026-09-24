@@ -1,6 +1,5 @@
 /**
  * APPLICATION CORE SCRIPT - WEBSITE CHI CỤC KIỂM LÂM LÀO CAI
- * TỈNH LÀO CAI MỚI (SÁP NHẬP LÀO CAI + YÊN BÁI)
  * Cập nhật số liệu chuẩn xác theo Quyết định số 537/QĐ-UBND ngày 27/02/2026
  */
 
@@ -528,7 +527,7 @@ const App = {
             {
                 stt: 1, soKyHieu: "537/QĐ-UBND", tenVanBan: "Công bố hiện trạng rừng tỉnh Lào Cai năm 2025",
                 ngayBanHanh: "27/02/2026", coQuanBanHanh: "UBND tỉnh Lào Cai", loaiVanBan: "Quyết định", linhVuc: "Quản lý bảo vệ rừng",
-                hieuLuc: "Còn hiệu lực", trichYeu: "Công bố số liệu hiện trạng rừng tỉnh Lào Cai mới (sáp nhập Yên Bái) đến ngày 31/12/2025: Diện tích đất có rừng 860.494,3 ha; Tỷ lệ che phủ rừng đạt 61,5%. Kèm 5 biểu số liệu và bản đồ số.",
+                hieuLuc: "Còn hiệu lực", trichYeu: "Công bố số liệu hiện trạng rừng tỉnh Lào Cai đến ngày 31/12/2025: Diện tích đất có rừng 860.494,3 ha; Tỷ lệ che phủ rừng đạt 61,5%. Kèm 5 biểu số liệu và bản đồ số.",
                 file: "537_QD_UBND_HienTrangRung2025.pdf"
             },
             {
@@ -597,8 +596,11 @@ const App = {
         const h = CCKL_DATA.hatKiemLam.find(x => x.id === hatId);
         if (!h) return;
 
-        // Lọc các xã thuộc hạt này
-        const danhSachXa = CCKL_DATA.danhSach99XaPhuong.filter(x => x.khuVuc.toLowerCase().includes(h.diaBan.split('&')[0].trim().toLowerCase()) || h.diaBan.includes(x.khuVuc));
+        // Lọc các xã/phường thuộc hạt này
+        const danhSachXa = CCKL_DATA.danhSach99XaPhuong.filter(x => {
+            const cleanTen = x.ten.replace(/^(P\.|Xã\s*)/i, '').trim().toLowerCase();
+            return h.diaBan.toLowerCase().includes(cleanTen) || h.diaBan.toLowerCase().includes(x.ten.toLowerCase());
+        });
 
         let xaHtml = '<ul style="margin-left:20px; line-height:1.8; margin-top:8px; max-height:160px; overflow-y:auto;">';
         danhSachXa.forEach(x => {
@@ -620,7 +622,7 @@ const App = {
                 <p><b>Biên chế công chức kiểm lâm:</b> <b>${h.bienChe} đồng chí</b></p>
                 <p><b>Cảnh báo cháy rừng:</b> Chỉ số FWI <b>${h.fwi}</b> (<span class="badge ${h.fwi >= 40 ? 'badge-danger' : (h.fwi >= 30 ? 'badge-warning' : 'badge-success')}">${h.capChay}</span>)</p>
                 
-                <h4 style="font-size:0.95rem; font-weight:700; margin-top:14px; border-bottom:1px solid #e2e8f0; padding-bottom:4px;">Các xã/thị trấn tiêu biểu trực thuộc:</h4>
+                <h4 style="font-size:0.95rem; font-weight:700; margin-top:14px; border-bottom:1px solid #e2e8f0; padding-bottom:4px;">Các xã, phường trực thuộc địa bàn phụ trách:</h4>
                 ${xaHtml}
             </div>
         `;
@@ -681,7 +683,7 @@ const App = {
                 <p><b>Số hiệu:</b> <span style="font-weight:700; color:#0f172a;">${soKyHieu}</span></p>
                 <p><b>Cơ quan ban hành:</b> UBND tỉnh Lào Cai</p>
                 <p><b>Tình trạng:</b> <span class="badge badge-success">Còn hiệu lực thi hành</span></p>
-                <p>Văn bản pháp lý nền tảng phục vụ chỉ đạo điều hành lâm nghiệp toàn diện tỉnh Lào Cai sau sáp nhập.</p>
+                <p>Văn bản pháp lý nền tảng phục vụ chỉ đạo điều hành lâm nghiệp toàn diện tỉnh Lào Cai.</p>
             </div>
         `;
         this.openModal(`Văn bản pháp luật: ${soKyHieu}`, content);
@@ -775,11 +777,11 @@ const App = {
                     <img src="images/ban_do_hien_trang.png" style="width:100%; height:auto; display:block;" alt="Bản đồ Hiện trạng Lâm nghiệp Lào Cai" />
                 </div>
                 <div style="margin-top:14px; text-align:left; background:#f1f5f9; padding:14px; border-radius:6px; font-size:0.86rem; color:#1e293b; line-height:1.6;">
-                    <div style="font-weight:700; font-size:0.95rem; color:#0f766e; margin-bottom:6px;">🗺️ BẢN ĐỒ HIỆN TRẠNG RỪNG TỈNH LÀO CAI MỚI (LÀO CAI + YÊN BÁI)</div>
-                    <p>• <b>Cơ sở số liệu:</b> Quyết định số 537/QĐ-UBND ngày 27/02/2026 của Ủy ban nhân dân tỉnh Lào Cai.</p>
-                    <p>• <b>Quy mô tự nhiên:</b> Tổng diện tích <b>1.325.675,0 ha</b>; Tổng diện tích đất có rừng <b>860.494,3 ha</b> (gồm 581.442,8 ha rừng tự nhiên và 279.051,5 ha rừng trồng).</p>
-                    <p>• <b>Độ che phủ rừng:</b> Đạt <b>61,50%</b> trên toàn bộ 99 xã, phường, thị trấn hợp nhất.</p>
-                    <p>• <b>Hệ thống chú giải:</b> Phân định rõ ranh giới xã, huyện; các khu rừng đặc dụng (VQG Hoàng Liên, Bát Xát, KBT Nà Hẩu, Mù Cang Chải, Hoàng Liên - Văn Bàn) và trục thủy văn Sông Hồng, Hồ Thác Bà.</p>
+                    <div style="font-weight:700; font-size:0.95rem; color:#0f766e; margin-bottom:6px;">🗺️ BẢN ĐỒ HIỆN TRẠNG RỪNG TỈNH LÀO CAI</div>
+                    <p>• <b>Cơ sở số liệu:</b> Quyết định số 537/QĐ-UBND ngày 27/02/2026 của Ủy ban nhân dân tỉnh Lào Cai; kết xuất từ 681.445 lô rừng (DBR_2025.shp).</p>
+                    <p>• <b>Quy mô tự nhiên:</b> Tổng diện tích <b>1.325.675,0 ha</b>; Tổng diện tích đất có rừng <b>860.494,3 ha</b> (gồm 466.715,6 ha rừng tự nhiên và 393.778,7 ha rừng trồng).</p>
+                    <p>• <b>Độ che phủ rừng:</b> Đạt <b>61,50%</b> trên toàn bộ 99 xã, phường.</p>
+                    <p>• <b>Hệ thống chú giải:</b> Ranh giới xã, phường và ranh giới tỉnh; các khu rừng đặc dụng, rừng phòng hộ, rừng sản xuất và trục thủy văn Sông Hồng, Hồ Thác Bà.</p>
                 </div>
             </div>
         `;

@@ -1,10 +1,11 @@
 """
 WEBSITE ĐIỀU HÀNH & CÔNG KHAI DỮ LIỆU LÂM NGHIỆP - CHI CỤC KIỂM LÂM LÀO CAI
-TỈNH LÀO CAI (SÁP NHẬP YÊN BÁI + LÀO CAI)
+TỈNH LÀO CAI
 Chạy trên nền tảng Streamlit
 Căn cứ: Quyết định số 537/QĐ-UBND ngày 27/02/2026 của UBND tỉnh Lào Cai
 """
 
+import json
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -100,9 +101,11 @@ st.markdown("""
 
 # SIDEBAR: Điều hướng và bộ lọc toàn hệ thống
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Emblem_of_Vietnam.svg/150px-Emblem_of_Vietnam.svg.png", width=70)
+    logo_file = Path(__file__).parent / "images" / "logo_kiem_lam.png"
+    if logo_file.exists():
+        st.image(str(logo_file), width=75)
     st.title("CHI CỤC KIỂM LÂM")
-    st.markdown("**TỈNH LÀO CAI MỚI**\n*(Sáp nhập Lào Cai + Yên Bái)*")
+    st.markdown("**TỈNH LÀO CAI**")
     st.markdown("---")
     
     menu = st.radio(
@@ -132,7 +135,7 @@ with st.sidebar:
 st.markdown("""
 <div class="main-header">
     <h1>Hệ Thống Thông Tin Điều Hành & Công Khai Dữ Liệu Lâm Nghiệp</h1>
-    <p>Chi Cục Kiểm Lâm Tỉnh Lào Cai (Địa bàn tỉnh hợp nhất Lào Cai + Yên Bái - 99 Xã, Phường & 11 Hạt Kiểm lâm)</p>
+    <p>Chi Cục Kiểm Lâm Tỉnh Lào Cai (Quản lý 99 Xã, Phường & 11 Hạt Kiểm lâm)</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -181,65 +184,131 @@ if menu == "🏠 1. Tổng quan điều hành":
     col_map, col_gauge = st.columns([1.3, 0.7])
     
     with col_map:
-        st.markdown("#### 🗺️ Bản đồ hành chính & hiện trạng lâm nghiệp tỉnh Lào Cai (sáp nhập Yên Bái + Lào Cai)")
-        sub_tab_img, sub_tab_gis = st.tabs(["🗺️ Bản đồ Hiện trạng Thực tế (Ảnh GIS QĐ 537)", "🛰️ Bản đồ Tương tác 11 Hạt KL"])
+        st.markdown("#### 🗺️ Bản đồ hành chính & hiện trạng lâm nghiệp tỉnh Lào Cai")
+        sub_tab_img, sub_tab_thematic, sub_tab_gis = st.tabs([
+            "🗺️ Bản đồ Hiện trạng Thực tế (Ảnh GIS QĐ 537)",
+            "📊 Bản đồ Chuyên đề Toàn tỉnh",
+            "🛰️ Bản đồ Tương tác 99 Xã/Phường"
+        ])
         
         with sub_tab_img:
             map_file = Path(__file__).parent / "images" / "ban_do_hien_trang.png"
             if map_file.exists():
-                st.image(str(map_file), caption="Bản đồ Hiện trạng Lâm nghiệp tỉnh Lào Cai hợp nhất (Lào Cai + Yên Bái) - Năm 2025 theo QĐ 537/QĐ-UBND", use_container_width=True)
+                st.image(str(map_file), caption="Bản đồ Hiện trạng Lâm nghiệp tỉnh Lào Cai - Năm 2025 theo QĐ 537/QĐ-UBND", use_container_width=True)
                 with st.expander("📌 Xem Chú giải & Cơ cấu hiện trạng rừng"):
                     st.markdown("""
-                    - **Rừng tự nhiên (Xanh đậm):** 581.442,8 ha (chiếm 67,57% diện tích có rừng).
-                    - **Rừng trồng (Xanh mạ):** 279.051,5 ha (chiếm 32,43% diện tích có rừng).
-                    - **Đất chưa có rừng & đất khác (Vàng nâu):** 465.180,7 ha.
-                    - **Ranh giới & Địa danh:** Phân định 99 xã/phường hợp nhất, 11 Hạt Kiểm lâm, các Vườn Quốc gia (Hoàng Liên, Bát Xát), Khu Bảo tồn và hệ thống mặt nước sông suối (Sông Hồng, Hồ Thác Bà).
+                    - **Rừng tự nhiên (Xanh đậm):** 466.715,6 ha (chiếm 54,24% diện tích có rừng).
+                    - **Rừng trồng (Xanh mạ):** 393.807,9 ha (chiếm 45,76% diện tích có rừng).
+                    - **Đất lâm nghiệp khác (Vàng nhạt):** 133.926 ha.
+                    - **Ranh giới xã phường:** Phân định ranh giới 99 xã, phường toàn tỉnh.
+                    - **Ranh giới tỉnh:** Tiếp giáp các tỉnh Lai Châu, Điện Biên, Sơn La, Phú Thọ, Tuyên Quang, Hà Giang và Trung Quốc.
                     """)
             else:
                 st.warning("Chưa tìm thấy tệp ảnh `images/ban_do_hien_trang.png`.")
                 
-        with sub_tab_gis:
-            df_hat = pd.DataFrame(HAT_KIEM_LAM)
-            # Lựa chọn chế độ hiển thị màu trên bản đồ
-            map_mode = st.radio("Chế độ hiển thị bản đồ:", ["Tỷ lệ che phủ rừng (%)", "Chỉ số nguy cơ cháy rừng (FWI)"], horizontal=True)
-            color_col = "che_phu" if map_mode == "Tỷ lệ che phủ rừng (%)" else "fwi"
-            color_scale = "Greens" if map_mode == "Tỷ lệ che phủ rừng (%)" else "YlOrRd"
-            
-            if hasattr(px, 'scatter_map'):
-                fig_map = px.scatter_map(
-                    df_hat,
-                    lat="lat",
-                    lon="lon",
-                    hover_name="ten",
-                    hover_data={"dia_ban": True, "tong_dt": ":,.1f", "che_phu": ":.1f%", "fwi": True, "cap_chay": True, "lat": False, "lon": False},
-                    color=color_col,
-                    size="tong_dt",
-                    size_max=35,
-                    color_continuous_scale=color_scale,
-                    zoom=7.3,
-                    center={"lat": 22.10, "lon": 104.25},
-                    map_style="carto-positron",
-                    height=440
-                )
+        with sub_tab_thematic:
+            opt_thematic = st.radio("Chọn bản đồ chuyên đề:", ["🏛️ Địa bàn 11 Hạt Kiểm lâm", "🌲 Tỷ lệ che phủ rừng (%)", "🔥 Dự báo nguy cơ cháy rừng (FWI)"], horizontal=True)
+            if opt_thematic == "🏛️ Địa bàn 11 Hạt Kiểm lâm":
+                f_hat = Path(__file__).parent / "images" / "ban_do_11_hat_kl.png"
+                if f_hat.exists():
+                    st.image(str(f_hat), caption="Bản đồ Phân bổ Địa bàn 11 Hạt Kiểm lâm (99 Xã, Phường theo QĐ 15/QĐ-CCKL)", use_container_width=True)
+            elif opt_thematic == "🌲 Tỷ lệ che phủ rừng (%)":
+                f_cp = Path(__file__).parent / "images" / "ban_do_che_phu_rung.png"
+                if f_cp.exists():
+                    st.image(str(f_cp), caption="Bản đồ Phân hạng Tỷ lệ Che phủ Rừng theo 99 Xã, Phường", use_container_width=True)
             else:
-                fig_map = px.scatter_mapbox(
-                    df_hat,
-                    lat="lat",
-                    lon="lon",
-                    hover_name="ten",
-                    hover_data={"dia_ban": True, "tong_dt": ":,.1f", "che_phu": ":.1f%", "fwi": True, "cap_chay": True, "lat": False, "lon": False},
-                    color=color_col,
-                    size="tong_dt",
-                    size_max=35,
-                    color_continuous_scale=color_scale,
-                    zoom=7.3,
-                    center={"lat": 22.10, "lon": 104.25},
-                    mapbox_style="carto-positron",
-                    height=440
-                )
-            fig_map.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-            st.plotly_chart(fig_map, use_container_width=True)
-            st.caption("* Bản đồ định vị 11 Hạt Kiểm lâm khu vực và các Khu bảo tồn. Nhấp rê chuột để xem diện tích, tỷ lệ che phủ và chỉ số FWI.")
+                f_fire = Path(__file__).parent / "images" / "ban_do_chay_rung.png"
+                if f_fire.exists():
+                    st.image(str(f_fire), caption="Bản đồ Dự báo Nguy cơ Cháy rừng Hôm nay theo 5 Cấp (Quy chuẩn FWI)", use_container_width=True)
+
+        with sub_tab_gis:
+            geojson_file = Path(__file__).parent / "data" / "ranh_gioi_99_xa.geojson"
+            if geojson_file.exists():
+                try:
+                    with open(geojson_file, encoding='utf-8') as f:
+                        gj_data = json.load(f)
+                    
+                    df_99_gis = pd.DataFrame(DANH_SACH_99_XA)
+                    
+                    # Assigned Hạt KL lookup
+                    assigned_hat_map = {
+                        'Hạt KL Bảo Yên': ['Bảo Yên', 'Bảo Hà', 'Nghĩa Đô', 'Phúc Khánh', 'Xuân Hòa', 'Thượng Hà', 'Lâm Giang', 'Khánh Hòa'],
+                        'Hạt KL Bảo Thắng': ['Bảo Thắng', 'Xuân Quang', 'Phong Hải', 'Gia Phú', 'Tằng Loỏng', 'Cốc Lầu', 'Bảo Nhai', 'Mường Bo'],
+                        'Hạt KL Bắc Hà': ['Bắc Hà', 'Bản Liền', 'Tả Củ Tỷ', 'Lùng Phình', 'Pha Long', 'Cao Sơn', 'Bản Lầu', 'Mường Khương', 'Si Ma Cai', 'Sín Chéng'],
+                        'Hạt KL Bát Xát': ['Bát Xát', 'Bản Xèo', 'Trịnh Tường', 'A Mú Sung', 'Tả Phìn', 'Ngũ Chỉ Sơn', 'P. Sa Pa', 'Hợp Thành', 'P. Lào Cai', 'Cốc San', 'P. Cam Đường', 'Tả Van', 'Bản Hồ'],
+                        'Hạt KL Văn Bàn': ['Văn Bàn', 'Khánh Yên', 'Võ Lao', 'Chiềng Ken', 'Dương Quỳ', 'Nậm Chày', 'Châu Quế'],
+                        'Hạt KL Trấn Yên': ['Trấn Yên', 'Hưng Khánh', 'Lương Thịnh', 'Việt Hồng', 'Quy Mông', 'Xuân Ái', 'Phong Dụ Hạ', 'Phong Dụ Thượng', 'Đông Cuông', 'Tân Hợp', 'Mậu A', 'Mỏ Vàng', 'P. Yên Bái', 'P. Âu Lâu', 'P. Nam Cường', 'P. Văn Phú'],
+                        'Hạt KL Lục Yên': ['Lâm Thượng', 'Tân Lĩnh', 'Lục Yên', 'Mường Lai', 'Phúc Lợi', 'Bảo Ái', 'Yên Bình', 'Thác Bà', 'Yên Thành', 'Cảm Nhân'],
+                        'Hạt KL Nghĩa Lộ': ['Hạnh Phúc', 'Tà Xi Láng', 'Phình Hồ', 'Trạm Tấu', 'Gia Hội', 'Sơn Lương', 'Liên Sơn', 'Văn Chấn', 'Cát Thịnh', 'Thượng Bằng La', 'Nghĩa Tâm', 'Chấn Thịnh', 'P. Trung Tâm', 'P. Cầu Thia', 'P. Nghĩa Lộ'],
+                        'Hạt KL Mù Cang Chải': ['Mù Cang Chải', 'Chế Tạo', 'Lao Chải', 'Khao Mang', 'Púng Luông', 'Nậm Có', 'Tú Lệ'],
+                        'Hạt KL KBT Hoàng Liên - Văn Bàn': ['Minh Lương', 'Nậm Xé'],
+                        'Hạt KL Khu bảo tồn Bát Xát': ['Mường Hum', 'Dền Sáng', 'Y Tý'],
+                    }
+                    xa_to_hat_gis = {x: h for h, lst in assigned_hat_map.items() for x in lst}
+                    df_99_gis['hat_kl'] = df_99_gis['ten'].map(xa_to_hat_gis).fillna('Khác')
+                    
+                    cap_v_set = {'Tả Van', 'Chế Tạo', 'Lao Chải', 'Khao Mang', 'Púng Luông', 'Nậm Có', 'Tú Lệ', 'Tà Xi Láng', 'Phình Hồ', 'Trạm Tấu', 'Bản Hồ', 'Nậm Xé', 'Y Tý', 'Dền Sáng'}
+                    cap_iv_set = {'Mù Cang Chải', 'Hạnh Phúc', 'Gia Hội', 'Sơn Lương', 'Liên Sơn', 'Văn Chấn', 'Cát Thịnh', 'Thượng Bằng La', 'Nghĩa Tâm', 'Chấn Thịnh', 'Minh Lương', 'Mường Hum', 'Dương Quỳ', 'Nậm Chày', 'Khánh Yên'}
+                    cap_ii_set = {'P. Lào Cai', 'P. Cam Đường', 'P. Yên Bái', 'P. Nam Cường', 'P. Âu Lâu', 'P. Văn Phú', 'P. Sa Pa', 'P. Nghĩa Lộ', 'P. Cầu Thia', 'P. Trung Tâm'}
+                    
+                    def get_fire_level(name):
+                        if name in cap_v_set: return 'Cấp V (Cực kỳ nguy hiểm)'
+                        elif name in cap_iv_set: return 'Cấp IV (Nguy hiểm)'
+                        elif name in cap_ii_set: return 'Cấp II (Trung bình)'
+                        else: return 'Cấp III (Cao)'
+                    
+                    df_99_gis['cap_chay'] = df_99_gis['ten'].apply(get_fire_level)
+                    
+                    map_mode = st.radio("Chế độ tô màu bản đồ:", ["🏛️ 11 Hạt Kiểm lâm", "🌲 Tỷ lệ che phủ rừng (%)", "🔥 Nguy cơ cháy rừng"], horizontal=True)
+                    
+                    choro_fn = getattr(px, 'choropleth_map', getattr(px, 'choropleth_mapbox', None))
+                    
+                    if map_mode == "🏛️ 11 Hạt Kiểm lâm":
+                        fig_map = choro_fn(
+                            df_99_gis, geojson=gj_data, locations="ten", featureidkey="properties.xa",
+                            color="hat_kl",
+                            hover_name="ten",
+                            hover_data={"hat_kl": True, "che_phu": ":.1f%", "dt_rung": ":,.1f", "cap_chay": True},
+                            zoom=7.1, center={"lat": 22.05, "lon": 104.30},
+                            height=460
+                        )
+                    elif map_mode == "🌲 Tỷ lệ che phủ rừng (%)":
+                        fig_map = choro_fn(
+                            df_99_gis, geojson=gj_data, locations="ten", featureidkey="properties.xa",
+                            color="che_phu", color_continuous_scale="Greens",
+                            hover_name="ten",
+                            hover_data={"hat_kl": True, "che_phu": ":.1f%", "dt_rung": ":,.1f", "cap_chay": True},
+                            zoom=7.1, center={"lat": 22.05, "lon": 104.30},
+                            height=460
+                        )
+                    else:
+                        fig_map = choro_fn(
+                            df_99_gis, geojson=gj_data, locations="ten", featureidkey="properties.xa",
+                            color="cap_chay",
+                            color_discrete_map={
+                                "Cấp V (Cực kỳ nguy hiểm)": "#dc2626",
+                                "Cấp IV (Nguy hiểm)": "#ea580c",
+                                "Cấp III (Cao)": "#eab308",
+                                "Cấp II (Trung bình)": "#16a34a"
+                            },
+                            hover_name="ten",
+                            hover_data={"hat_kl": True, "che_phu": ":.1f%", "dt_rung": ":,.1f", "cap_chay": True},
+                            zoom=7.1, center={"lat": 22.05, "lon": 104.30},
+                            height=460
+                        )
+                    
+                    if hasattr(fig_map.layout, 'mapbox'):
+                        fig_map.update_layout(mapbox_style="carto-positron", margin={"r":0,"t":0,"l":0,"b":0})
+                    elif hasattr(fig_map.layout, 'map'):
+                        fig_map.update_layout(map_style="carto-positron", margin={"r":0,"t":0,"l":0,"b":0})
+                    else:
+                        fig_map.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+                    st.plotly_chart(fig_map, use_container_width=True)
+                    st.caption("* Bản đồ phân vùng tương tác 99 xã, phường. Nhấp rê chuột để xem Hạt KL quản lý, độ che phủ và cấp cháy.")
+                except Exception as e:
+                    st.error(f"Lỗi tải bản đồ tương tác: {e}")
+            else:
+                st.info("Đang nạp dữ liệu không gian 99 xã...")
         
     with col_gauge:
         st.markdown("#### 🔥 Chỉ số cảnh báo cháy rừng (Hôm nay)")
@@ -269,11 +338,12 @@ if menu == "🏠 1. Tổng quan điều hành":
         st.plotly_chart(fig_gauge, use_container_width=True)
         
         st.markdown("""
-        **Phân bố số xã theo 5 cấp nguy cơ:**
-        - 🔴 **Cấp V (Rất cao):** 2 xã (*Tả Van, Chế Tạo*)
-        - 🟠 **Cấp IV (Cao):** 15 xã (*Bản Hồ, Nậm Xé, Púng Luông...*)
-        - 🟡 **Cấp III (Trung bình):** 38 xã
-        - 🟢 **Cấp I & II (Thấp):** 44 xã
+        **Phân bố 99 xã theo 5 cấp nguy cơ:**
+        - 🔴 **Cấp V (Cực kỳ nguy hiểm):** **14 xã** (*Tả Van, Chế Tạo, Nậm Có, Púng Luông...*)
+        - 🟠 **Cấp IV (Nguy hiểm):** **15 xã** (*Bản Hồ, Nậm Xé, Gia Hội, Sơn Lương...*)
+        - 🟡 **Cấp III (Cao):** **60 xã**
+        - 🟢 **Cấp II (Trung bình):** **10 xã** (*Các phường nội thị*)
+        - 🔵 **Cấp I (Thấp):** **00 xã**
         """)
         
     st.markdown("---")
@@ -495,10 +565,10 @@ elif menu == "📑 5. Thủ tục hành chính (49 TTHC)":
     st.markdown("### 📑 Hệ Thống Theo Dõi Thủ Tục Hành Chính Ngành Lâm Nghiệp")
     
     t1, t2, t3, t4 = st.columns(4)
-    t1.metric("Hồ sơ đã tiếp nhận", "152 hồ sơ", "+15 so với tháng trước")
-    t2.metric("Đang xử lý đúng hạn", "137 hồ sơ", "90,1%")
-    t3.metric("Đã quá hạn", "12 hồ sơ", "-2 hồ sơ")
-    t4.metric("Đã trả kết quả", "3 hồ sơ", "100% hài lòng")
+    t1.metric("Hồ sơ tiếp nhận", "20 hồ sơ")
+    t2.metric("Đã giải quyết", "18 hồ sơ", "90%")
+    t3.metric("Đang giải quyết", "02 hồ sơ")
+    t4.metric("Quá hạn", "00 hồ sơ", "0%")
     
     st.markdown("---")
     
@@ -538,10 +608,11 @@ elif menu == "📑 5. Thủ tục hành chính (49 TTHC)":
 # PHÂN HỆ 6: VĂN BẢN PHÁP LUẬT & QĐ 537
 # ==============================================================================
 elif menu == "⚖️ 6. Văn bản pháp luật & QĐ 537":
-    st.markdown("### ⚖️ Cơ Sở Dữ Liệu Văn Bản Quy Phạm Pháp Luật & Quyết Định 537")
+    st.markdown("### ⚖️ Cơ Sở Dữ Liệu Văn Bản Quy Phạm Pháp Luật & Quyết Định")
     
     docs = [
-        {"so_hieu": "537/QĐ-UBND", "ngay": "27/02/2026", "co_quan": "UBND tỉnh Lào Cai", "ten": "Công bố hiện trạng rừng tỉnh Lào Cai năm 2025 (tỉnh mới sáp nhập Yên Bái, diện tích có rừng 860.494,3 ha, che phủ 61,5%)"},
+        {"so_hieu": "537/QĐ-UBND", "ngay": "27/02/2026", "co_quan": "UBND tỉnh Lào Cai", "ten": "Công bố hiện trạng rừng tỉnh Lào Cai năm 2025 (diện tích đất có rừng 860.494,3 ha, tỷ lệ che phủ 61,5%)"},
+        {"so_hieu": "15/QĐ-CCKL", "ngay": "05/02/2026", "co_quan": "Chi cục Kiểm lâm tỉnh Lào Cai", "ten": "Quy định chức năng nhiệm vụ và phân công địa bàn 11 Hạt Kiểm lâm phụ trách 99 xã, phường"},
         {"so_hieu": "2336/QĐ-UBND", "ngay": "12/12/2025", "co_quan": "UBND tỉnh Lào Cai", "ten": "Giao chỉ tiêu Kế hoạch phát triển KT-XH năm 2026 (trồng mới 14.000 ha rừng, khai thác 1,13 triệu m³ gỗ, giá trị 4.437,5 tỷ đồng)"},
         {"so_hieu": "1382/QĐ-UBND", "ngay": "23/04/2026", "co_quan": "UBND tỉnh Lào Cai", "ten": "Phê duyệt Đề án du lịch sinh thái, nghỉ dưỡng, giải trí (74 dự án thuê môi trường rừng với diện tích 5.723 ha)"},
         {"so_hieu": "42/2026/NĐ-CP", "ngay": "26/01/2026", "co_quan": "Chính phủ", "ten": "Sửa đổi, bổ sung một số điều của Nghị định 156/2018/NĐ-CP quy định chi tiết thi hành Luật Lâm nghiệp"},

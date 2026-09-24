@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi Cục Kiểm Lâm Lào Cai - Hệ Thống Điều Hành & Dữ Liệu Lâm Nghiệp (Sáp nhập Yên Bái + Lào Cai)</title>
+    <title>Chi Cục Kiểm Lâm Lào Cai - Hệ Thống Điều Hành & Dữ Liệu Lâm Nghiệp</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
@@ -14,19 +14,11 @@
     <!-- 1. TOP BAR & BRANDING HEADER -->
     <header class="top-header">
         <div class="brand-wrapper" onclick="App.switchAction('action-1')">
-            <!-- Vector Logo Chi cục Kiểm lâm -->
-            <svg class="brand-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="48" fill="#1b5e20" stroke="#fbc02d" stroke-width="4" />
-                <circle cx="50" cy="50" r="42" fill="#ffffff" />
-                <path d="M 50 15 L 68 46 L 58 46 L 74 72 L 26 72 L 42 46 L 32 46 Z" fill="#1b5e20" />
-                <path d="M 40 28 L 54 52 L 46 52 L 58 72 L 22 72 L 34 52 L 26 52 Z" fill="#2e7d32" opacity="0.9" />
-                <path d="M 60 28 L 74 52 L 66 52 L 78 72 L 42 72 L 54 52 L 46 52 Z" fill="#2e7d32" opacity="0.9" />
-                <rect x="47" y="72" width="6" height="12" fill="#78350f" />
-                <path d="M 24 76 Q 50 92 76 76" stroke="#fbc02d" stroke-width="3" fill="none" stroke-linecap="round" />
-            </svg>
+            <!-- Logo Chi cục Kiểm lâm -->
+            <img src="images/logo_kiem_lam.png" alt="Logo Kiểm Lâm" style="height: 52px; width: 52px; object-fit: contain; margin-right: 12px;" />
             <div class="brand-text">
                 <h1>Chi Cục Kiểm Lâm Lào Cai</h1>
-                <span class="slogan">Bảo vệ rừng - Phát triển rừng - Vì cuộc sống xanh (Tỉnh hợp nhất Lào Cai + Yên Bái)</span>
+                <span class="slogan">Bảo vệ rừng - Phát triển rừng - Vì cuộc sống xanh bền vững</span>
             </div>
         </div>
 
@@ -98,7 +90,7 @@
         <div class="hero-content">
             <span class="hero-badge">CĂN CỨ QUYẾT ĐỊNH SỐ 537/QĐ-UBND NGÀY 27/02/2026 CỦA UBND TỈNH LÀO CAI</span>
             <h2 class="hero-title">Quản Lý, Bảo Vệ Và Phát Triển Rừng Bền Vững Tỉnh Lào Cai</h2>
-            <p class="hero-subtitle">"Không gian phát triển lâm nghiệp toàn diện tỉnh Lào Cai sau sáp nhập Yên Bái - Vì kinh tế xanh và đa dạng sinh học"</p>
+            <p class="hero-subtitle">"Không gian phát triển lâm nghiệp toàn diện tỉnh Lào Cai - Vì kinh tế xanh và đa dạng sinh học"</p>
         </div>
     </section>
 
@@ -187,7 +179,7 @@
                     <div class="card-header">
                         <div class="card-title">
                             <span class="card-title-icon">🗺️</span>
-                            Bản đồ hành chính & hiện trạng lâm nghiệp tỉnh Lào Cai (sáp nhập Yên Bái + Lào Cai)
+                            Bản đồ hành chính & hiện trạng lâm nghiệp tỉnh Lào Cai
                         </div>
                         <div style="display:flex; gap:6px;">
                             <button class="action-btn active" id="btn-map-image" onclick="App.showMapMode('image')">Bản đồ Hiện trạng</button>
@@ -205,15 +197,16 @@
                                 <button class="map-ctrl-btn" title="Xem toàn màn hình" onclick="App.openMapModal()">⛶</button>
                             </div>
                             <div class="map-image-viewport" id="mapViewport">
-                                <img src="images/ban_do_hien_trang.png" id="mainMapImg" alt="Bản đồ Hiện trạng Lâm nghiệp tỉnh Lào Cai (Lào Cai + Yên Bái)" class="map-img-panzoom" onclick="App.openMapModal()" title="Nhấp chuột để mở toàn màn hình" />
+                                <img src="images/ban_do_hien_trang.png" id="mainMapImg" alt="Bản đồ Hiện trạng Lâm nghiệp tỉnh Lào Cai" class="map-img-panzoom" onclick="App.openMapModal()" title="Nhấp chuột để mở toàn màn hình" />
                             </div>
                             <div class="map-overlay-legend">
                                 <div class="map-legend-title">Chú giải hiện trạng rừng</div>
                                 <div class="legend-row"><span class="legend-badge" style="background:#155724;"></span> Rừng tự nhiên</div>
                                 <div class="legend-row"><span class="legend-badge" style="background:#28a745;"></span> Rừng trồng</div>
-                                <div class="legend-row"><span class="legend-badge" style="background:#c3e6cb;"></span> Đất chưa có rừng / khác</div>
-                                <div class="legend-row"><span class="legend-badge" style="background:#0284c7;"></span> Mặt nước, Thác Bà, Sông Hồng</div>
-                                <div class="legend-row"><span class="legend-badge" style="background:#94a3b8; height:2px;"></span> Ranh giới huyện, xã</div>
+                                <div class="legend-row"><span class="legend-badge" style="background:#e5b932;"></span> Đất lâm nghiệp khác</div>
+                                <div class="legend-row"><span class="legend-badge" style="background:#0284c7;"></span> Mặt nước</div>
+                                <div class="legend-row"><span class="legend-badge" style="background:#64748b; height:2px;"></span> Ranh giới xã, phường</div>
+                                <div class="legend-row"><span class="legend-badge" style="background:#e11d48; height:2px;"></span> Ranh giới tỉnh</div>
                             </div>
                         </div>
 
@@ -230,7 +223,7 @@
                         </div>
 
                         <div style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; text-align:center;">
-                            * Bản đồ hiện trạng lâm nghiệp tích hợp toàn bộ không gian địa lý tỉnh Lào Cai mới (gồm Yên Bái sáp nhập). Nhấp vào ảnh hoặc bấm biểu tượng <b>⛶</b> để xem toàn màn hình.
+                            * Bản đồ hiện trạng lâm nghiệp kết xuất từ dữ liệu 681.445 lô rừng (DBR_2025.shp) và 99 xã, phường tỉnh Lào Cai. Nhấp vào ảnh hoặc bấm biểu tượng <b>⛶</b> để xem toàn màn hình.
                         </div>
                     </div>
                 </div>
@@ -258,23 +251,23 @@
                             <div class="fire-level-list">
                                 <div class="fire-level-row" style="background:#ffebee; color:#b71c1c;">
                                     <div class="fire-level-badge"><div class="fire-level-dot" style="background:#d32f2f;"></div><span>Cấp V: Rất cao (≥ 40)</span></div>
-                                    <div class="fire-level-count">2 xã (Tả Van, Chế Tạo)</div>
+                                    <div class="fire-level-count">14 xã (Bảo Thắng, Bảo Yên, Bắc Hà...)</div>
                                 </div>
                                 <div class="fire-level-row" style="background:#fff3e0; color:#e65100;">
                                     <div class="fire-level-badge"><div class="fire-level-dot" style="background:#f57c00;"></div><span>Cấp IV: Cao (30 - 39)</span></div>
-                                    <div class="fire-level-count">15 xã (Bản Hồ, Nậm Xé, Púng Luông...)</div>
+                                    <div class="fire-level-count">15 xã (Bát Xát, Sa Pa, Văn Bàn...)</div>
                                 </div>
                                 <div class="fire-level-row" style="background:#fffde7; color:#f57f17;">
                                     <div class="fire-level-badge"><div class="fire-level-dot" style="background:#fbc02d;"></div><span>Cấp III: Trung bình (20 - 29)</span></div>
-                                    <div class="fire-level-count">38 xã</div>
+                                    <div class="fire-level-count">60 xã</div>
                                 </div>
                                 <div class="fire-level-row" style="background:#f1f8e9; color:#33691e;">
                                     <div class="fire-level-badge"><div class="fire-level-dot" style="background:#689f38;"></div><span>Cấp II: Thấp (10 - 19)</span></div>
-                                    <div class="fire-level-count">35 xã</div>
+                                    <div class="fire-level-count">10 xã</div>
                                 </div>
                                 <div class="fire-level-row" style="background:#e8f5e9; color:#1b5e20;">
                                     <div class="fire-level-badge"><div class="fire-level-dot" style="background:#2e7d32;"></div><span>Cấp I: Rất thấp (&lt; 10)</span></div>
-                                    <div class="fire-level-count">9 xã</div>
+                                    <div class="fire-level-count">0 xã</div>
                                 </div>
                             </div>
                         </div>
@@ -562,7 +555,7 @@
                 <div class="dashboard-grid-2col" style="grid-template-columns: 1.1fr 0.9fr;">
                     <div class="dashboard-card">
                         <div class="card-header">
-                            <div class="card-title">🔥 Bản đồ nhiệt FWI tỉnh Lào Cai (sáp nhập Yên Bái)</div>
+                            <div class="card-title">🔥 Bản đồ nhiệt FWI tỉnh Lào Cai</div>
                         </div>
                         <div class="card-body">
                             <div class="map-container">
@@ -794,14 +787,14 @@
         <div class="footer-content">
             <div class="footer-col">
                 <h4>Chi Cục Kiểm Lâm Tỉnh Lào Cai</h4>
-                <p>Cơ quan quản lý chuyên ngành về lâm nghiệp, bảo vệ rừng, phòng cháy chữa cháy rừng trên toàn địa bàn tỉnh Lào Cai mới sau sáp nhập Yên Bái.</p>
+                <p>Cơ quan quản lý chuyên ngành về lâm nghiệp, bảo vệ rừng, phòng cháy chữa cháy rừng trên toàn địa bàn tỉnh Lào Cai.</p>
                 <p style="margin-top:8px;"><b>Trụ sở chính:</b> Đại lộ Trần Hưng Đạo, phường Nam Cường, TP Lào Cai.</p>
                 <p><b>Đường dây nóng PCCCR:</b> <b style="color:#ef4444;">0214.3820.130</b> (Trực ban 24/7)</p>
             </div>
             <div class="footer-col">
                 <h4>Phân Hệ Nổi Bật</h4>
                 <ul class="footer-links">
-                    <li><a href="javascript:void(0)" onclick="App.switchAction('action-1')">Bản đồ hành chính tỉnh mới</a></li>
+                    <li><a href="javascript:void(0)" onclick="App.switchAction('action-1')">Bản đồ hành chính & hiện trạng</a></li>
                     <li><a href="javascript:void(0)" onclick="App.switchAction('action-2'); App.switchSubTab('action-2', 'tab-99-xa');">Tra cứu 99 xã, phường (Biểu 3)</a></li>
                     <li><a href="javascript:void(0)" onclick="App.switchAction('action-4')">11 Hạt Kiểm lâm khu vực</a></li>
                     <li><a href="javascript:void(0)" onclick="App.switchAction('action-5')">49 Thủ tục hành chính</a></li>

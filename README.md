@@ -1,6 +1,5 @@
 # WEBSITE CHI CỤC KIỂM LÂM TỈNH LÀO CAI
 ## HỆ THỐNG THÔNG TIN ĐIỀU HÀNH & CÔNG KHAI DỮ LIỆU LÂM NGHIỆP
-### TỈNH LÀO CAI (SÁP NHẬP LÀO CAI + YÊN BÁI)
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Online-22c55e?style=for-the-badge&logo=github)](https://thao226355.github.io/web-kiemlam-laocai/)
 [![Streamlit App](https://img.shields.io/badge/Streamlit_Cloud-Online-FF4B4B?style=for-the-badge&logo=streamlit)](https://share.streamlit.io/)
@@ -86,7 +85,7 @@ Sau khi đẩy code lên, cả **GitHub Pages** và **Streamlit Cloud** sẽ t�
 
 ### 4. Dữ liệu chuẩn hóa theo Quyết định số 537/QĐ-UBND
 - **Tổng diện tích tự nhiên:** 1.325.675,0 ha.
-- **Diện tích đất có rừng:** 860.494,3 ha (gồm 581.442,8 ha rừng tự nhiên và 279.051,5 ha rừng trồng).
-- **Tỷ lệ che phủ rừng:** 61,50% trên toàn bộ 99 xã/phường hợp nhất.
-- **Tổ chức bộ máy:** 11 Hạt Kiểm lâm khu vực, 4 Phòng nghiệp vụ, 2 Đội cơ động, 5 BQL Khu bảo tồn, 461 cán bộ CCVC.
+- **Diện tích đất có rừng:** 860.494,3 ha (gồm 466.715,6 ha rừng tự nhiên và 393.778,7 ha rừng trồng).
+- **Tỷ lệ che phủ rừng:** 61,50% trên toàn bộ 99 xã, phường.
+- **Tổ chức bộ máy:** 11 Hạt Kiểm lâm khu vực (theo QĐ số 15/QĐ-CCKL), 4 Phòng nghiệp vụ, 2 Đội cơ động, 5 BQL Khu bảo tồn, 461 cán bộ CCVC.
 - **Dịch vụ công:** 49 Thủ tục hành chính (41 cấp tỉnh, 8 cấp xã) và hệ thống tra cứu mã hồ sơ theo thời gian thực.

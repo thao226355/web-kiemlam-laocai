@@ -1,6 +1,6 @@
 /**
  * CHARTS & INTERACTIVE MAP MODULE
- * BẢN ĐỒ HÀNH CHÍNH TỈNH LÀO CAI MỚI (SÁP NHẬP LÀO CAI + YÊN BÁI)
+ * BẢN ĐỒ HÀNH CHÍNH & LÂM NGHIỆP TỈNH LÀO CAI
  * Cập nhật số liệu QĐ số 537/QĐ-UBND & Báo cáo tháng 5/2026
  * Hoạt động 100% Offline (Vanilla JS + HTML5 Canvas + SVG Vector)
  */
@@ -139,9 +139,9 @@ const ForestCharts = {
         const container = document.getElementById(containerId);
         if (!container) return;
 
-        // Định nghĩa 11 khu vực quản lý Hạt Kiểm lâm trên bản đồ tỉnh hợp nhất
+        // Định nghĩa 11 khu vực quản lý Hạt Kiểm lâm trên bản đồ tỉnh Lào Cai
         const regions = [
-            // --- KHU VỰC PHÍA BẮC & TÂY BẮC (LÀO CAI CŨ) ---
+            // --- KHU VỰC PHÍA BẮC & TÂY BẮC ---
             {
                 id: "kbt_bat_xat",
                 hatId: "kbt_bat_xat",
@@ -192,7 +192,7 @@ const ForestCharts = {
                 labelX: 235, labelY: 220
             },
 
-            // --- KHU VỰC PHÍA NAM & ĐÔNG NAM (YÊN BÁI SÁP NHẬP) ---
+            // --- KHU VỰC PHÍA NAM & ĐÔNG NAM ---
             {
                 id: "tran_yen",
                 hatId: "tran_yen",
