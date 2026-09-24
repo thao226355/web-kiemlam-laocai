@@ -344,7 +344,7 @@ const App = {
     },
 
     /* =========================================================================
-       ACTION 3: CẢNH BÁO & BẢO VỆ RỪNG
+       ACTION 3: Cảnh cháy rừng & Vi phạm
        ========================================================================= */
     renderFireWarning() {
         const tableDanger = document.getElementById('table-fire-danger-body');
@@ -369,7 +369,7 @@ const App = {
        ACTION 4: TỔ CHỨC & ĐƠN VỊ
        ========================================================================= */
     renderOrgChart() {
-        // 4 Phòng chuyên môn
+        // Các phòng nghiệp vụ
         const phongList = document.getElementById('org-phong-list');
         if (phongList) {
             let html = '';
@@ -407,7 +407,7 @@ const App = {
             ttList.innerHTML = html;
         }
 
-        // 11 Hạt Kiểm lâm khu vực
+        // Hạt Kiểm lâm khu vực
         const hatList = document.getElementById('org-hat-list');
         if (hatList) {
             let html = '';
@@ -613,7 +613,7 @@ const App = {
                 <p><b>Đơn vị:</b> <span style="font-size:1.15rem; font-weight:800; color:var(--primary);">${h.ten}</span></p>
                 <p><b>Địa bàn quản lý:</b> ${h.diaBan}</p>
                 <p><b>Trụ sở làm việc:</b> ${h.truSo}</p>
-                <p><b>Tổng diện tích rừng quản lý:</b> <b style="color:#0f172a;">${h.tongDT.toLocaleString('vi-VN')} ha</b></p>
+                <p><b>Diện tích rừng quản lý:</b> <b style="color:#0f172a;">${h.tongDT.toLocaleString('vi-VN')} ha</b></p>
                 <ul style="margin-left:20px;">
                     <li>Rừng tự nhiên: <b>${h.tuNhien.toLocaleString('vi-VN')} ha</b></li>
                     <li>Rừng trồng: <b>${h.trong.toLocaleString('vi-VN')} ha</b> (Chưa thành rừng: ${h.chuaThanhRung.toLocaleString('vi-VN')} ha)</li>

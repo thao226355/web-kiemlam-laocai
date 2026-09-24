@@ -1,6 +1,6 @@
 /**
- * DỮ LIỆU HỆ THỐNG THÔNG TIN ĐIỀU HÀNH & CÔNG KHAI DỮ LIỆU LÂM NGHIỆP
- * CHI CỤC KIỂM LÂM TỈNH LÀO CAI
+ * DỮ LIỆU Hệ Thống Thông Tin Điều Hành & Dữ Liệu Lâm Nghiệp
+ * CHI CỤC KIỂM LÂM Tỉnh Lào Cai
  * Căn cứ:
  * - Quyết định số 537/QĐ-UBND ngày 27/02/2026 của UBND tỉnh Lào Cai
  * - Quyết định số 2336/QĐ-UBND ngày 12/12/2025 giao chỉ tiêu KT-XH năm 2026
@@ -97,7 +97,7 @@ const CCKL_DATA = {
         { id: 8, loai: "UBND cấp xã tạm quản lý", dienTich: 322522.1, tuNhien: 165152.1, trong: 157370.1, tyLe: 37.48 }
     ],
 
-    // 4. Số liệu 11 Hạt Kiểm lâm khu vực toàn tỉnh Lào Cai (QĐ số 15/QĐ-CCKL ngày 05/02/2026)
+    // 4. Số liệu Hạt Kiểm lâm khu vực toàn tỉnh Lào Cai (QĐ số 15/QĐ-CCKL ngày 05/02/2026)
     hatKiemLam: [
         { id: "bat_xat", ten: "Hạt KL khu vực Bát Xát", diaBan: "13 xã, phường: Bát Xát, A Mú Sung, A Lù, Bản Qua, Bản Xèo, Cốc Mỳ, Dền Thàng, Mường Vi, Nậm Chạc, Nậm Pung, Phìn Ngan, Quang Kim, Trịnh Tường", tongDT: 55236.0, tuNhien: 37964.0, trong: 16669.0, chuaThanhRung: 602.0, chePhu: 57.4, bienChe: 41, capChay: "Cao", fwi: 36.4, truSo: "Xã Bát Xát" },
         { id: "bao_yen", ten: "Hạt KL khu vực Bảo Yên", diaBan: "8 xã: Bảo Yên, Bảo Hà, Điện Quan, Nghĩa Đô, Tân Dương, Vĩnh Yên, Xuân Hòa, Kim Sơn", tongDT: 85779.6, tuNhien: 23941.2, trong: 52726.0, chuaThanhRung: 9111.9, chePhu: 65.5, bienChe: 29, capChay: "Trung bình", fwi: 27.2, truSo: "Xã Phố Ràng" },
@@ -297,10 +297,10 @@ const CCKL_DATA = {
         ]
     },
 
-    // 9. Cơ cấu tổ chức Chi cục Kiểm lâm tỉnh Lào Cai mới (Số liệu T5/2026)
+    // 9. Cơ cấu tổ chức Chi cục Kiểm lâm Lào Caimới (Số liệu T5/2026)
     toChucMoi: {
         lanhDaoChiCuc: {
-            chucVu: "Lãnh đạo Chi cục Kiểm lâm tỉnh Lào Cai",
+            chucVu: "Lãnh đạo Chi cục Kiểm lâm Lào Cai",
             chiCucTruong: "01 Chi cục trưởng",
             phoChiCucTruong: "02 Phó Chi cục trưởng",
             bienCheToanTinh: "Tổng biên chế giao: 472 (427 CC, 17 VC, 28 HĐ) • Thực tế: 461 CCVC",

@@ -2,7 +2,7 @@
 MODULE DỮ LIỆU LÂM NGHIỆP TỈNH LÀO CAI
 Căn cứ:
 - Quyết định số 537/QĐ-UBND ngày 27/02/2026 của UBND tỉnh Lào Cai
-- Quyết định số 15/QĐ-CCKL ngày 05/02/2026 của Chi cục Kiểm lâm tỉnh Lào Cai
+- Quyết định số 15/QĐ-CCKL ngày 05/02/2026 của Chi cục Kiểm lâm Lào Cai
 - Quyết định số 2336/QĐ-UBND ngày 12/12/2025 giao chỉ tiêu KT-XH năm 2026
 - Quyết định số 1382/QĐ-UBND ngày 23/04/2026 về Đề án Du lịch sinh thái
 - Báo cáo ngành lâm nghiệp cập nhật tháng 5/2026
@@ -79,7 +79,7 @@ CHU_QUAN_LY = [
     {"stt": 8, "chu_quan_ly": "UBND cấp xã tạm quản lý", "tong_dien_tich": 322522.1, "rung_tu_nhien": 165152.1, "rung_trong": 157370.1, "ty_le": 37.48}
 ]
 
-# 4. 11 Hạt Kiểm lâm khu vực kèm tọa độ địa lý & địa bàn phụ trách (các xã, phường theo QĐ 15/QĐ-CCKL)
+# 4. Hạt Kiểm lâm khu vực kèm tọa độ địa lý & địa bàn phụ trách (các xã, phường theo QĐ 15/QĐ-CCKL)
 HAT_KIEM_LAM = [
     {"id": "bat_xat", "ten": "Hạt KL khu vực Bát Xát", "dia_ban": "13 xã, phường: Xã Bát Xát, Bản Xèo, Trịnh Tường, A Mú Sung, Tả Phìn, Ngũ Chỉ Sơn, Hợp Thành, Cốc San, Tả Van, Bản Hồ; Phường Sa Pa, Lào Cai, Cam Đường", "so_xa": 13, "tong_dt": 55236.0, "tu_nhien": 37964.0, "trong": 16669.0, "chua_thanh_rung": 602.0, "che_phu": 57.4, "bien_che": 41, "cap_chay": "Cao", "fwi": 36.4, "lat": 22.56, "lon": 103.78, "tru_so": "Xã Bát Xát"},
     {"id": "bao_yen", "ten": "Hạt KL khu vực Bảo Yên", "dia_ban": "8 xã: Xã Bảo Yên, Bảo Hà, Nghĩa Đô, Phúc Khánh, Xuân Hòa, Thượng Hà, Lâm Giang, Khánh Hòa", "so_xa": 8, "tong_dt": 85779.6, "tu_nhien": 23941.2, "trong": 52726.0, "chua_thanh_rung": 9111.9, "che_phu": 65.5, "bien_che": 29, "cap_chay": "Trung bình", "fwi": 27.2, "lat": 22.25, "lon": 104.34, "tru_so": "Xã Bảo Yên"},

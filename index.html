@@ -65,7 +65,7 @@
             </a>
             <a class="nav-tab" data-action="action-3">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-                <span>3. Cảnh báo & Bảo vệ rừng</span>
+                <span>3. Cảnh cháy rừng & Vi phạm</span>
                 <span class="nav-tab-badge">FWI: 36.8</span>
             </a>
             <a class="nav-tab" data-action="action-4">
@@ -179,7 +179,7 @@
                     <div class="card-header">
                         <div class="card-title">
                             <span class="card-title-icon">🗺️</span>
-                            Bản đồ hành chính & hiện trạng lâm nghiệp tỉnh Lào Cai
+                            Bản đồ chuyên đề lâm nghiệp tỉnh Lào Cai
                         </div>
                         <div style="display:flex; gap:6px; flex-wrap:wrap;">
                             <button class="action-btn active" id="btn-map-image" onclick="App.showMapMode('image')">Bản đồ Hiện trạng</button>
@@ -267,7 +267,7 @@
                         </div>
 
                         <div style="margin-top:16px; padding-top:12px; border-top:1px solid #f1f5f9; font-size:0.84rem;">
-                            <b>Trực ban PCCCR 24/24h:</b> Duy trì lực lượng cơ động tại 2 Đội KLCĐ và 11 Hạt Kiểm lâm khu vực; kiểm soát nghiêm ngặt người ra vào các khu rừng đặc dụng Fansipan, Bát Xát và Mù Cang Chải.
+                            <b>Trực ban PCCCR 24/24h:</b> Duy trì lực lượng cơ động tại 2 Đội KLCĐ và Hạt Kiểm lâm khu vực; kiểm soát nghiêm ngặt người ra vào các khu rừng đặc dụng Fansipan, Bát Xát và Mù Cang Chải.
                         </div>
                     </div>
                 </div>
@@ -334,7 +334,7 @@
                 <button class="sub-nav-btn active" data-subtab="tab-ht-rung" onclick="App.switchSubTab('action-2', 'tab-ht-rung')">Biểu 1: Mục đích sử dụng</button>
                 <button class="sub-nav-btn" data-subtab="tab-99-xa" onclick="App.switchSubTab('action-2', 'tab-99-xa')">Biểu 3: Toàn bộ 99 Xã/Phường</button>
                 <button class="sub-nav-btn" data-subtab="tab-chu-quanly" onclick="App.switchSubTab('action-2', 'tab-chu-quanly')">Biểu 2: Theo chủ quản lý</button>
-                <button class="sub-nav-btn" data-subtab="tab-don-vi-hat" onclick="App.switchSubTab('action-2', 'tab-don-vi-hat')">11 Hạt Kiểm lâm khu vực</button>
+                <button class="sub-nav-btn" data-subtab="tab-don-vi-hat" onclick="App.switchSubTab('action-2', 'tab-don-vi-hat')">Hạt Kiểm lâm khu vực</button>
                 <button class="sub-nav-btn" data-subtab="tab-vung-trong-diem" onclick="App.switchSubTab('action-2', 'tab-vung-trong-diem')">Vùng Quế, Gỗ, Măng, Sơn Tra</button>
                 <button class="sub-nav-btn" data-subtab="tab-du-lich-st" onclick="App.switchSubTab('action-2', 'tab-du-lich-st')">Du lịch sinh thái (QĐ 1382)</button>
             </div>
@@ -446,7 +446,7 @@
                                         <th style="width:35px; text-align:center;">STT</th>
                                         <th>Tên Xã / Phường</th>
                                         <th>Khu vực huyện/thị</th>
-                                        <th style="text-align:right;">Tổng DT tự nhiên (ha)</th>
+                                        <th style="text-align:right;">Diện tích tự nhiên (ha)</th>
                                         <th style="text-align:right;">Diện tích có rừng (ha)</th>
                                         <th style="text-align:right;">Rừng tự nhiên</th>
                                         <th style="text-align:right;">Rừng trồng</th>
@@ -485,10 +485,10 @@
                 </div>
             </div>
 
-            <!-- Sub-tab 4: 11 Hạt Kiểm lâm khu vực -->
+            <!-- Sub-tab 4: Hạt Kiểm lâm khu vực -->
             <div class="sub-tab-content" data-tab-content="tab-don-vi-hat" style="display:none;">
                 <div class="dashboard-card">
-                    <div class="card-header"><div class="card-title">Số liệu lâm nghiệp quản lý bởi 11 Hạt Kiểm lâm khu vực toàn tỉnh</div></div>
+                    <div class="card-header"><div class="card-title">Số liệu lâm nghiệp quản lý bởi Hạt Kiểm lâm khu vực toàn tỉnh</div></div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="custom-table">
@@ -536,7 +536,7 @@
         </section>
 
         <!-- ===================================================================
-             ACTION 3: CẢNH BÁO & BẢO VỆ RỪNG
+             ACTION 3: Cảnh cháy rừng & Vi phạm
              =================================================================== -->
         <section id="action-3" class="action-section" style="display:none;">
             <div class="sub-nav-wrapper">
@@ -630,14 +630,15 @@
         <section id="action-4" class="action-section" style="display:none;">
             <div class="dashboard-card">
                 <div class="card-header">
-                    <div class="card-title">Cơ cấu tổ chức bộ máy Chi cục Kiểm lâm tỉnh Lào Cai mới (Số liệu T5/2026)</div>
+                    <div class="card-title">Cơ cấu tổ chức bộ máy Chi cục Kiểm lâm Lào Caimới (Số liệu T5/2026)</div>
                     <span class="badge badge-info">Tổng biên chế: 461 CCVC thực tế</span>
                 </div>
                 <div class="card-body org-chart-wrapper">
                     <!-- Đỉnh: Lãnh đạo Chi cục -->
-                    <div class="org-card-root" onclick="App.showOrgDetail('lanhdao', 'Chi cục Kiểm lâm tỉnh Lào Cai')">
-                        <div class="org-root-title">Chi cục Kiểm lâm tỉnh Lào Cai</div>
-                        <div class="org-root-leaders">01 Chi cục trưởng & 02 Phó Chi cục trưởng</div>
+                    <div class="org-card-root" onclick="App.showOrgDetail('lanhdao', 'Chi cục Kiểm lâm Lào Cai')">
+                        <div class="org-root-title">Chi cục Kiểm lâm Lào Cai</div>
+                        <div class="org-root-leaders">01 Chi cục trưởng: Nguyễn Việt Hà</div>
+                        <div class="org-root-leaders">02 Phó Chi cục trưởng</div>
                         <div style="font-size:0.75rem; margin-top:4px; opacity:0.85;">Biên chế: 461/472 (422 Công chức, 17 Viên chức, 22 HĐ)</div>
                     </div>
 
@@ -646,7 +647,7 @@
                     <!-- 3 Cột chức năng -->
                     <div class="org-branch-grid">
                         <div class="org-branch-column">
-                            <div class="org-branch-header">4 Phòng Chuyên Môn</div>
+                            <div class="org-branch-header">Các phòng nghiệp vụ</div>
                             <div id="org-phong-list" class="org-node-list"></div>
                         </div>
 
@@ -656,7 +657,7 @@
                         </div>
 
                         <div class="org-branch-column">
-                            <div class="org-branch-header">11 Hạt Kiểm Lâm Khu Vực</div>
+                            <div class="org-branch-header">Hạt Kiểm lâm khu vực</div>
                             <div id="org-hat-list" class="org-node-list"></div>
                         </div>
                     </div>
@@ -780,17 +781,17 @@
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-col">
-                <h4>Chi Cục Kiểm Lâm Tỉnh Lào Cai</h4>
+                <h4>Chi cục Kiểm lâm Lào Cai</h4>
                 <p>Cơ quan quản lý chuyên ngành về lâm nghiệp, bảo vệ rừng, phòng cháy chữa cháy rừng trên toàn địa bàn tỉnh Lào Cai.</p>
                 <p style="margin-top:8px;"><b>Trụ sở chính:</b> Đại lộ Trần Hưng Đạo, phường Nam Cường, TP Lào Cai.</p>
-                <p><b>Đường dây nóng PCCCR:</b> <b style="color:#ef4444;">0214.3820.130</b> (Trực ban 24/7)</p>
+                <p><b>Đường dây nóng:</b> <b style="color:#ef4444;">0214.3820.130</b> (Trực ban 24/7)</p>
             </div>
             <div class="footer-col">
                 <h4>Phân Hệ Nổi Bật</h4>
                 <ul class="footer-links">
                     <li><a href="javascript:void(0)" onclick="App.switchAction('action-1')">Bản đồ hành chính & hiện trạng</a></li>
                     <li><a href="javascript:void(0)" onclick="App.switchAction('action-2'); App.switchSubTab('action-2', 'tab-99-xa');">Tra cứu 99 xã, phường (Biểu 3)</a></li>
-                    <li><a href="javascript:void(0)" onclick="App.switchAction('action-4')">11 Hạt Kiểm lâm khu vực</a></li>
+                    <li><a href="javascript:void(0)" onclick="App.switchAction('action-4')">Hạt Kiểm lâm khu vực</a></li>
                     <li><a href="javascript:void(0)" onclick="App.switchAction('action-5')">49 Thủ tục hành chính</a></li>
                 </ul>
             </div>
@@ -802,7 +803,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            © 2026 Chi cục Kiểm lâm tỉnh Lào Cai. Hệ thống thông tin điều hành và công khai dữ liệu lâm nghiệp.
+            © 2026 Chi cục Kiểm lâm Lào Cai. Hệ thống thông tin điều hành và công khai dữ liệu lâm nghiệp.
         </div>
     </footer>
 

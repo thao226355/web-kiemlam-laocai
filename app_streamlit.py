@@ -1,6 +1,6 @@
 """
 WEBSITE ĐIỀU HÀNH & CÔNG KHAI DỮ LIỆU LÂM NGHIỆP - CHI CỤC KIỂM LÂM LÀO CAI
-TỈNH LÀO CAI
+Tỉnh Lào Cai
 Chạy trên nền tảng Streamlit
 Căn cứ: Quyết định số 537/QĐ-UBND ngày 27/02/2026 của UBND tỉnh Lào Cai
 """
@@ -105,7 +105,7 @@ with st.sidebar:
     if logo_file.exists():
         st.image(str(logo_file), width=75)
     st.title("CHI CỤC KIỂM LÂM")
-    st.markdown("**TỈNH LÀO CAI**")
+    st.markdown("**Tỉnh Lào Cai**")
     st.markdown("---")
     
     menu = st.radio(
@@ -113,7 +113,7 @@ with st.sidebar:
         [
             "🏠 1. Tổng quan điều hành",
             "🌲 2. Dữ liệu rừng (99 Xã/Phường)",
-            "🔥 3. Cảnh báo & Bảo vệ rừng",
+            "🔥 3. Cảnh cháy rừng & Vi phạm",
             "🏛️ 4. Tổ chức & 11 Hạt Kiểm lâm",
             "📑 5. Thủ tục hành chính (49 TTHC)",
             "⚖️ 6. Văn bản pháp luật & QĐ 537"
@@ -124,18 +124,18 @@ with st.sidebar:
     st.markdown("### 📌 Thông tin dữ liệu")
     st.markdown("- **Căn cứ:** QĐ 537/QĐ-UBND (27/02/2026)")
     st.markdown("- **Năm số liệu:** 2025 (Cập nhật T5/2026)")
-    st.markdown("- **Tổng DT tự nhiên:** 1.325.675 ha")
-    st.markdown("- **Tổng diện tích rừng:** 860.494,3 ha")
+    st.markdown("- **Diện tích tự nhiên:** 1.325.675 ha")
+    st.markdown("- **Diện tích rừng:** 860.494,3 ha")
     st.markdown("- **Độ che phủ toàn tỉnh:** **61,5%**")
     
     st.markdown("---")
-    st.markdown("📞 **Đường dây nóng PCCCR:**  \n**0214.3820.130** (Trực ban 24/7)")
+    st.markdown("📞 **Đường dây nóng:**  \n**0214.3820.130** (Trực ban 24/7)")
 
 # HEADER CHUNG
 st.markdown("""
 <div class="main-header">
-    <h1>Hệ Thống Thông Tin Điều Hành & Công Khai Dữ Liệu Lâm Nghiệp</h1>
-    <p>Chi Cục Kiểm Lâm Tỉnh Lào Cai (Quản lý 99 Xã, Phường & 11 Hạt Kiểm lâm)</p>
+    <h1>Hệ Thống Thông Tin Điều Hành & Dữ Liệu Lâm Nghiệp</h1>
+    <p>Chi cục Kiểm lâm Lào Cai(Quản lý 99 Xã, Phường & 11 Hạt Kiểm lâm)</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -143,14 +143,14 @@ st.markdown("""
 # PHÂN HỆ 1: TỔNG QUAN ĐIỀU HÀNH (DASHBOARD)
 # ==============================================================================
 if menu == "🏠 1. Tổng quan điều hành":
-    st.markdown("### 📊 Các chỉ số lâm nghiệp cốt lõi (Căn cứ Quyết định số 537/QĐ-UBND)")
+    st.markdown("### 📊 Số liệu lâm nghiệp toàn tỉnh(Căn cứ Quyết định số 537/QĐ-UBND)")
     
     kpi1, kpi2, kpi3, kpi4 = st.columns(4)
     with kpi1:
         st.markdown("""
         <div class="metric-card">
             <div class="metric-val">860.494,3 ha</div>
-            <div class="metric-lbl">Tổng đất có rừng</div>
+            <div class="metric-lbl">Diện tích đất có rừng</div>
             <div class="metric-sub">DT tự nhiên: 1.325.675 ha</div>
         </div>
         """, unsafe_allow_html=True)
@@ -184,7 +184,7 @@ if menu == "🏠 1. Tổng quan điều hành":
     col_map, col_gauge = st.columns([1.3, 0.7])
     
     with col_map:
-        st.markdown("#### 🗺️ Bản đồ hành chính & hiện trạng lâm nghiệp tỉnh Lào Cai")
+        st.markdown("#### 🗺️ Bản đồ chuyên đề lâm nghiệp tỉnh Lào Cai")
         sub_tab_img, sub_tab_thematic, sub_tab_gis = st.tabs([
             "🗺️ BĐ Hiện trạng rừng",
             "📊 BĐ Chuyên đề",
@@ -406,7 +406,7 @@ elif menu == "🌲 2. Dữ liệu rừng (99 Xã/Phường)":
     ])
     
     with subtab1:
-        st.markdown("#### 🏘️ Tra cứu số liệu hiện trạng rừng 99 xã, phường, thị trấn (Biểu 3 - QĐ 537)")
+        st.markdown("#### 🏘️ Tra cứu số liệu hiện trạng rừng 99 xã, phường (Biểu 3 - QĐ 537)")
         df_xa = pd.DataFrame(DANH_SACH_99_XA)
         
         c_filter1, c_filter2 = st.columns([1, 2])
@@ -480,7 +480,7 @@ elif menu == "🌲 2. Dữ liệu rừng (99 Xã/Phường)":
                 st.markdown(f"- **Sản lượng hàng năm:** **{v['san_luong']}**")
 
     with subtab4:
-        st.markdown("#### 🏢 Thông số 11 Hạt Kiểm lâm khu vực")
+        st.markdown("#### 🏢 Thông số Hạt Kiểm lâm khu vực")
         st.dataframe(pd.DataFrame(HAT_KIEM_LAM)[["id", "ten", "dia_ban", "tong_dt", "tu_nhien", "trong", "che_phu", "bien_che", "tru_so"]].rename(columns={
             "id": "Mã hạt",
             "ten": "Tên Hạt Kiểm lâm",
@@ -499,10 +499,10 @@ elif menu == "🌲 2. Dữ liệu rừng (99 Xã/Phường)":
         st.markdown("- **Dự án trọng điểm:** Khu DLST Thác Bạc - Đỉnh Đèo, Cột cờ Lũng Pô - Y Tý, Nậm Xé - Văn Bàn, Ruộng bậc thang Mù Cang Chải, hồ Thác Bà.")
 
 # ==============================================================================
-# PHÂN HỆ 3: CẢNH BÁO & BẢO VỆ RỪNG
+# PHÂN HỆ 3: Cảnh cháy rừng & Vi phạm
 # ==============================================================================
-elif menu == "🔥 3. Cảnh báo & Bảo vệ rừng":
-    st.markdown("### 🔥 Hệ Thống Cảnh Báo Cháy Rừng & Bảo Vệ Rừng")
+elif menu == "🔥 3. Cảnh cháy rừng & Vi phạm":
+    st.markdown("### 🔥 Cảnh cháy rừng & Vi phạm")
     
     col_hot, col_forecast = st.columns([1.2, 0.8])
     with col_hot:
@@ -537,26 +537,26 @@ elif menu == "🔥 3. Cảnh báo & Bảo vệ rừng":
 # PHÂN HỆ 4: TỔ CHỨC & 11 HẠT KIỂM LÂM
 # ==============================================================================
 elif menu == "🏛️ 4. Tổ chức & 11 Hạt Kiểm lâm":
-    st.markdown("### 🏛️ Sơ Đồ Cơ Cấu Tổ Chức Chi Cục Kiểm Lâm Lào Cai Mới")
+    st.markdown("### 🏛️ Sơ đồ cơ cấu tổ chức Chi cục Kiểm lâm Lào Cai")
     
     st.info("📌 **Tổng biên chế toàn tỉnh:** Giao **472 biên chế** (427 Công chức, 17 Viên chức, 28 Hợp đồng). Thực tế đang làm việc: **461 CCVC** (Trình độ Thạc sỹ 17,1%, Đại học 76,6%).")
     
     c_root1, c_root2, c_root3 = st.columns([1, 2, 1])
     with c_root2:
-        st.success("👑 **LÃNH ĐẠO CHI CỤC KIỂM LÂM TỈNH LÀO CAI**  \n01 Chi cục trưởng & 02 Phó Chi cục trưởng  \n*Số 333, đường Điện Biên, phường Yên Bái, tỉnh Lào Cai*")
+        st.success("👑 **LÃNH ĐẠO CHI CỤC KIỂM LÂM TỈNH LÀO CAI**  \n01 Chi cục trưởng: Nguyễn Việt Hà\n02 Phó Chi cục trưởng  \n*Số 333, đường Điện Biên, phường Yên Bái, tỉnh Lào Cai*")
         
     st.markdown("---")
     
     col_p, col_d, col_h = st.columns(3)
     with col_p:
-        st.markdown("#### 📂 4 Phòng Chuyên Môn")
+        st.markdown("#### 📂 Các phòng nghiệp vụ")
         st.markdown("1. **Phòng Hành chính - Tổng hợp:** 19 biên chế (01 TP, 05 PP, 13 CC, 05 HĐ)")
         st.markdown("2. **Phòng Quản lý, bảo vệ rừng & BTTN:** 14 biên chế (01 TP, 04 PP, 09 CC)")
         st.markdown("3. **Phòng Sử dụng & Phát triển rừng:** 11 biên chế (01 TP, 03 PP, 07 CC)")
         st.markdown("4. **Phòng Điều tra, xử lý vi phạm:** 08 biên chế (01 TP, 07 CC)")
         
     with col_d:
-        st.markdown("#### 🛡️ 2 Đội Cơ Động & 5 BQL KBT")
+        st.markdown("#### 🛡️ Đội Kiểm lâm cơ động, Ban quản lý rừng")
         st.markdown("1. **Đội KLCĐ & PCCCR số 1:** 13 biên chế (phụ trách khu vực phía Bắc)")
         st.markdown("2. **Đội KLCĐ & PCCCR số 2:** 10 biên chế (phụ trách khu vực phía Nam)")
         st.markdown("3. **VQG Hoàng Liên & VQG Bát Xát**")
@@ -564,19 +564,19 @@ elif menu == "🏛️ 4. Tổ chức & 11 Hạt Kiểm lâm":
         st.markdown("5. **Khu BTTN Nà Hẩu & KBT loài Mù Cang Chải**")
         
     with col_h:
-        st.markdown("#### 🌲 11 Hạt Kiểm Lâm Khu Vực")
-        st.markdown("- Hạt KL Bát Xát (41 BC) | Hạt KL Sa Pa")
-        st.markdown("- Hạt KL Bảo Yên (29 BC) | Hạt KL Bảo Thắng (28 BC)")
-        st.markdown("- Hạt KL Bắc Hà (39 BC) | Hạt KL Văn Bàn (38 BC)")
-        st.markdown("- Hạt KL Trấn Yên (49 BC) | Hạt KL Nghĩa Lộ (42 BC)")
-        st.markdown("- Hạt KL Lục Yên (34 BC) | Hạt KL Mù Cang Chải (25 BC)")
+        st.markdown("#### 🌲 Hạt Kiểm lâm khu vực")
+        st.markdown("- Hạt KL Bát Xát (41 BC) ; Hạt KL Sa Pa")
+        st.markdown("- Hạt KL Bảo Yên (29 BC) ; Hạt KL Bảo Thắng (28 BC)")
+        st.markdown("- Hạt KL Bắc Hà (39 BC) ; Hạt KL Văn Bàn (38 BC)")
+        st.markdown("- Hạt KL Trấn Yên (49 BC) ; Hạt KL Nghĩa Lộ (42 BC)")
+        st.markdown("- Hạt KL Lục Yên (34 BC) ; Hạt KL Mù Cang Chải (25 BC)")
         st.markdown("- Hạt KL KBT Bát Xát (09 BC) | KBT HL-VB (11 BC)")
 
 # ==============================================================================
 # PHÂN HỆ 5: THỦ TỤC HÀNH CHÍNH (49 TTHC)
 # ==============================================================================
 elif menu == "📑 5. Thủ tục hành chính (49 TTHC)":
-    st.markdown("### 📑 Hệ Thống Theo Dõi Thủ Tục Hành Chính Ngành Lâm Nghiệp")
+    st.markdown("### 📑 Theo dõi thủ tục hành chính")
     
     t1, t2, t3, t4 = st.columns(4)
     t1.metric("Hồ sơ tiếp nhận", "20 hồ sơ")
@@ -602,7 +602,7 @@ elif menu == "📑 5. Thủ tục hành chính (49 TTHC)":
             st.markdown("- **Đơn vị nộp:** Công ty Cổ phần Thủy điện Nậm Xé - Văn Bàn")
             st.markdown("- **Ngày nhận:** 10/05/2026 | **Hạn giải quyết:** 25/05/2026")
             st.markdown("- **Trạng thái:** 🟡 `Đang thẩm định hồ sơ thực địa`")
-            st.markdown("- **Cán bộ thụ lý:** Nguyễn Văn Tuấn (Phòng Sử dụng & PTR)")
+            st.markdown("- **Cán bộ thụ lý:** Vũ Văn Việt (Phòng Quản lý bảo vệ rừng và Bảo tồn thiên nhiên)")
         elif code.upper() == "HSC123457":
             st.success("✅ **Tìm thấy hồ sơ:** `HSC123457`")
             st.markdown("- **Tên thủ tục:** Phê duyệt Phương án khai thác gỗ rừng trồng sản xuất")
@@ -622,11 +622,11 @@ elif menu == "📑 5. Thủ tục hành chính (49 TTHC)":
 # PHÂN HỆ 6: VĂN BẢN PHÁP LUẬT & QĐ 537
 # ==============================================================================
 elif menu == "⚖️ 6. Văn bản pháp luật & QĐ 537":
-    st.markdown("### ⚖️ Cơ Sở Dữ Liệu Văn Bản Quy Phạm Pháp Luật & Quyết Định")
+    st.markdown("### ⚖️ Các quy định pháp luật, văn bản cấp tỉnh")
     
     docs = [
         {"so_hieu": "537/QĐ-UBND", "ngay": "27/02/2026", "co_quan": "UBND tỉnh Lào Cai", "ten": "Công bố hiện trạng rừng tỉnh Lào Cai năm 2025 (diện tích đất có rừng 860.494,3 ha, tỷ lệ che phủ 61,5%)"},
-        {"so_hieu": "15/QĐ-CCKL", "ngay": "05/02/2026", "co_quan": "Chi cục Kiểm lâm tỉnh Lào Cai", "ten": "Quy định chức năng nhiệm vụ và phân công địa bàn 11 Hạt Kiểm lâm phụ trách 99 xã, phường"},
+        {"so_hieu": "15/QĐ-CCKL", "ngay": "05/02/2026", "co_quan": "Chi cục Kiểm lâm Lào Cai", "ten": "Quy định chức năng nhiệm vụ và phân công địa bàn 11 Hạt Kiểm lâm phụ trách 99 xã, phường"},
         {"so_hieu": "2336/QĐ-UBND", "ngay": "12/12/2025", "co_quan": "UBND tỉnh Lào Cai", "ten": "Giao chỉ tiêu Kế hoạch phát triển KT-XH năm 2026 (trồng mới 14.000 ha rừng, khai thác 1,13 triệu m³ gỗ, giá trị 4.437,5 tỷ đồng)"},
         {"so_hieu": "1382/QĐ-UBND", "ngay": "23/04/2026", "co_quan": "UBND tỉnh Lào Cai", "ten": "Phê duyệt Đề án du lịch sinh thái, nghỉ dưỡng, giải trí (74 dự án thuê môi trường rừng với diện tích 5.723 ha)"},
         {"so_hieu": "42/2026/NĐ-CP", "ngay": "26/01/2026", "co_quan": "Chính phủ", "ten": "Sửa đổi, bổ sung một số điều của Nghị định 156/2018/NĐ-CP quy định chi tiết thi hành Luật Lâm nghiệp"},
@@ -650,7 +650,7 @@ elif menu == "⚖️ 6. Văn bản pháp luật & QĐ 537":
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center; color: #64748b; font-size: 0.85rem;">
-    © 2026 Chi cục Kiểm lâm tỉnh Lào Cai. Hệ thống thông tin điều hành và công khai dữ liệu lâm nghiệp.<br>
+    © 2026 Chi cục Kiểm lâm Lào Cai. Hệ thống thông tin điều hành và công khai dữ liệu lâm nghiệp.<br>
     Ứng dụng Streamlit Cloud & Online Dashboard.
 </div>
 """, unsafe_allow_html=True)
