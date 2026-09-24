@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Cục Kiểm Lâm Lào Cai - Hệ Thống Điều Hành & Dữ Liệu Lâm Nghiệp (Sáp nhập Yên Bái + Lào Cai)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    </style>
+</head>
+<body>
+
+    <!-- 1. TOP BAR & BRANDING HEADER -->
+    <header class="top-header">
+        <div class="brand-wrapper" onclick="App.switchAction('action-1')">
+            <!-- Vector Logo Chi cục Kiểm lâm -->
+            <svg class="brand-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" fill="#1b5e20" stroke="#fbc02d" stroke-width="4" />
+                <circle cx="50" cy="50" r="42" fill="#ffffff" />
+                <path d="M 50 15 L 68 46 L 58 46 L 74 72 L 26 72 L 42 46 L 32 46 Z" fill="#1b5e20" />
+                <path d="M 40 28 L 54 52 L 46 52 L 58 72 L 22 72 L 34 52 L 26 52 Z" fill="#2e7d32" opacity="0.9" />
+                <path d="M 60 28 L 74 52 L 66 52 L 78 72 L 42 72 L 54 52 L 46 52 Z" fill="#2e7d32" opacity="0.9" />
+                <rect x="47" y="72" width="6" height="12" fill="#78350f" />
+                <path d="M 24 76 Q 50 92 76 76" stroke="#fbc02d" stroke-width="3" fill="none" stroke-linecap="round" />
+            </svg>
+            <div class="brand-text">
+                <h1>Chi Cục Kiểm Lâm Lào Cai</h1>
+                <span class="slogan">Bảo vệ rừng - Phát triển rừng - Vì cuộc sống xanh (Tỉnh hợp nhất Lào Cai + Yên Bái)</span>
+            </div>
+        </div>
+
+        <div class="header-tools">
+            <div class="data-year-select">
+                <label for="select-data-year">Năm dữ liệu:</label>
+                <select id="select-data-year" onchange="alert('Hệ thống đang hiển thị số liệu chính thức theo Quyết định số 537/QĐ-UBND ngày 27/02/2026 của UBND tỉnh');">
+                    <option value="2025" selected>2025 (theo QĐ 537/QĐ-UBND)</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+
+            <div class="quick-search">
+                <input type="text" id="global-search-input" placeholder="Tìm xã, hồ sơ, văn bản, số liệu..." />
+                <button type="button" id="global-search-btn" title="Tìm kiếm">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+
+            <button class="header-btn" onclick="App.exportDataToCSV()" title="Xuất toàn bộ 99 xã/phường dạng CSV">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Xuất 99 xã (CSV)
+            </button>
+
+            <button class="header-btn" onclick="window.print()" title="In trang hiện tại">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                In
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. MAIN NAVIGATION (6 ACTIONS) -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a class="nav-tab active" data-action="action-1">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>1. Tổng quan</span>
+            </a>
+            <a class="nav-tab" data-action="action-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                <span>2. Dữ liệu rừng</span>
+                <span class="nav-tab-badge" style="background:#16a34a;">99 Xã</span>
+            </a>
+            <a class="nav-tab" data-action="action-3">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                <span>3. Cảnh báo & Bảo vệ rừng</span>
+                <span class="nav-tab-badge">FWI: 36.8</span>
+            </a>
+            <a class="nav-tab" data-action="action-4">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>4. Tổ chức & Đơn vị</span>
+                <span class="nav-tab-badge" style="background:#2563eb;">11 Hạt KL</span>
+            </a>
+            <a class="nav-tab" data-action="action-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <span>5. Thủ tục hành chính</span>
+                <span class="nav-tab-badge" style="background:#ea580c;">49 TTHC</span>
+            </a>
+            <a class="nav-tab" data-action="action-6">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <span>6. Pháp luật & Tài liệu</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- 3. HERO BANNER -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <span class="hero-badge">CĂN CỨ QUYẾT ĐỊNH SỐ 537/QĐ-UBND NGÀY 27/02/2026 CỦA UBND TỈNH LÀO CAI</span>
+            <h2 class="hero-title">Quản Lý, Bảo Vệ Và Phát Triển Rừng Bền Vững Tỉnh Lào Cai</h2>
+            <p class="hero-subtitle">"Không gian phát triển lâm nghiệp toàn diện tỉnh Lào Cai sau sáp nhập Yên Bái - Vì kinh tế xanh và đa dạng sinh học"</p>
+        </div>
+    </section>
+
+    <!-- 4. APP CONTENT WRAPPER -->
+    <main class="main-wrapper">
+
+        <!-- 4 KPI STATS CHÍNH THỨC THEO QUYẾT ĐỊNH SỐ 537/QĐ-UBND -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 12h3l-4 7h18l-4-7h3L12 2zm-1 18h2v3h-2v-3z"/></svg>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-value">860.494,3 ha</div>
+                    <div class="stat-label">Tổng diện tích đất có rừng</div>
+                    <div class="stat-sub">Tổng diện tích tự nhiên: <b>1.325.675 ha</b></div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon emerald">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M16 4l-3 5h2l-4 6h10l-4-6h2l-3-5zm-8 4l-3 5h2l-4 6h10l-4-6h2l-3-5zm7 13h2v3h-2v-3zm-8 0h2v3h-2v-3z"/></svg>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-value">466.715,6 ha</div>
+                    <div class="stat-label">Rừng tự nhiên (54,24%)</div>
+                    <div class="stat-sub">Rừng gỗ tự nhiên: <b>387.846,5 ha</b></div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon leaf">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10m-7-3a7 7 0 0 1 14 0M5 10c0 4 3 7 7 7s7-3 7-7M12 17v5"/></svg>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-value">393.778,7 ha</div>
+                    <div class="stat-label">Rừng trồng</div>
+                    <div class="stat-sub">Đã thành rừng: <b>347.919,6 ha</b> (Chưa thành rừng: 45.859,1 ha)</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon teal">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-value" style="color:var(--primary);">61,5%</div>
+                    <div class="stat-label">Tỷ lệ che phủ rừng toàn tỉnh</div>
+                    <div class="stat-sub">Diện tích đủ tiêu chí che phủ: <b>814.635,2 ha</b></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================================
+             ACTION 1: TỔNG QUAN (DASHBOARD)
+             =================================================================== -->
+        <section id="action-1" class="action-section">
+            <!-- 5 Quick Action Buttons -->
+            <div class="quick-action-grid">
+                <button class="quick-action-btn btn-forest-data" data-target="action-2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    <span>Dữ liệu rừng (99 Xã)</span>
+                </button>
+                <button class="quick-action-btn btn-forest-warning" data-target="action-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                    <span>Cảnh báo & BVR</span>
+                </button>
+                <button class="quick-action-btn btn-forest-org" data-target="action-4">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>Tổ chức (11 Hạt KL)</span>
+                </button>
+                <button class="quick-action-btn btn-forest-admin" data-target="action-5">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    <span>49 Thủ tục HC</span>
+                </button>
+                <button class="quick-action-btn btn-forest-law" data-target="action-6">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span>Pháp luật & QĐ 537</span>
+                </button>
+            </div>
+
+            <!-- Dashboard Grid Hàng 1: Bản đồ hành chính tỉnh mới & Cảnh báo cháy FWI -->
+            <div class="dashboard-grid-2col">
+                <!-- KHỐI 1: BẢN ĐỒ HÀNH CHÍNH TỈNH LÀO CAI MỚI (LÀO CAI + YÊN BÁI) -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span class="card-title-icon">🗺️</span>
+                            Bản đồ hành chính & hiện trạng lâm nghiệp tỉnh Lào Cai (sáp nhập Yên Bái + Lào Cai)
+                        </div>
+                        <div style="display:flex; gap:6px;">
+                            <button class="action-btn active" id="btn-map-image" onclick="App.showMapMode('image')">Bản đồ Hiện trạng</button>
+                            <button class="action-btn" id="btn-map-cover" onclick="App.showMapMode('status')">Độ che phủ</button>
+                            <button class="action-btn" id="btn-map-fire" onclick="App.showMapMode('fire')">Cấp cháy FWI</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Khung Bản đồ ảnh Hiện trạng thực tế (Theo ảnh bản đồ mới nhất) -->
+                        <div id="image-map-view" class="map-image-wrapper">
+                            <div class="map-controls">
+                                <button class="map-ctrl-btn" title="Phóng to" onclick="App.zoomMap(1.2)">➕</button>
+                                <button class="map-ctrl-btn" title="Thu nhỏ" onclick="App.zoomMap(0.8)">➖</button>
+                                <button class="map-ctrl-btn" title="Khôi phục kích thước ban đầu" onclick="App.resetMapZoom()">↺</button>
+                                <button class="map-ctrl-btn" title="Xem toàn màn hình" onclick="App.openMapModal()">⛶</button>
+                            </div>
+                            <div class="map-image-viewport" id="mapViewport">
+                                <img src="images/ban_do_hien_trang.png" id="mainMapImg" alt="Bản đồ Hiện trạng Lâm nghiệp tỉnh Lào Cai (Lào Cai + Yên Bái)" class="map-img-panzoom" onclick="App.openMapModal()" title="Nhấp chuột để mở toàn màn hình" />
+                            </div>
+                            <div class="map-overlay-legend">
+                                <div class="map-legend-title">Chú giải hiện trạng rừng</div>
+                                <div class="legend-row"><span class="legend-badge" style="background:#155724;"></span> Rừng tự nhiên</div>
+                                <div class="legend-row"><span class="legend-badge" style="background:#28a745;"></span> Rừng trồng</div>
+                                <div class="legend-row"><span class="legend-badge" style="background:#c3e6cb;"></span> Đất chưa có rừng / khác</div>
+                                <div class="legend-row"><span class="legend-badge" style="background:#0284c7;"></span> Mặt nước, Thác Bà, Sông Hồng</div>
+                                <div class="legend-row"><span class="legend-badge" style="background:#94a3b8; height:2px;"></span> Ranh giới huyện, xã</div>
+                            </div>
+                        </div>
+
+                        <!-- Khung Bản đồ Vector SVG tương tác -->
+                        <div id="vector-map-view" class="map-container" style="display:none;">
+                            <div id="overview-map-container" class="map-svg-wrapper"></div>
+                            <div class="map-legend">
+                                <div class="legend-item"><div class="legend-color" style="background:#0f441c;"></div><span>Độ che phủ rất cao (≥80%)</span></div>
+                                <div class="legend-item"><div class="legend-color" style="background:#1b5e20;"></div><span>Che phủ cao (68 - 79%)</span></div>
+                                <div class="legend-item"><div class="legend-color" style="background:#2e7d32;"></div><span>Che phủ trung bình (60 - 67%)</span></div>
+                                <div class="legend-item"><div class="legend-color" style="background:#7cb342;"></div><span>Dưới 60%</span></div>
+                                <div class="legend-item"><span style="color:#0284c7; font-weight:700;">--- Sông Hồng & Hồ Thác Bà</span></div>
+                            </div>
+                        </div>
+
+                        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; text-align:center;">
+                            * Bản đồ hiện trạng lâm nghiệp tích hợp toàn bộ không gian địa lý tỉnh Lào Cai mới (gồm Yên Bái sáp nhập). Nhấp vào ảnh hoặc bấm biểu tượng <b>⛶</b> để xem toàn màn hình.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KHỐI 2: CẢNH BÁO CHÁY RỪNG (FWI 36.8) -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span class="card-title-icon" style="color:#d32f2f;">🔥</span>
+                            Cảnh báo cháy rừng toàn tỉnh (Hôm nay)
+                        </div>
+                        <a class="card-action-link" onclick="App.switchAction('action-3')">Xem 7 điểm nóng →</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="gauge-stats-layout">
+                            <div class="gauge-chart-box">
+                                <canvas id="overview-fire-gauge"></canvas>
+                                <div class="gauge-score">
+                                    <div class="gauge-fwi-label">Chỉ số FWI</div>
+                                    <div class="gauge-fwi-value">36,8</div>
+                                    <span class="gauge-cap-tag" style="background:#fff3e0; color:#e65100;">Cấp nguy cơ: CAO</span>
+                                </div>
+                            </div>
+
+                            <div class="fire-level-list">
+                                <div class="fire-level-row" style="background:#ffebee; color:#b71c1c;">
+                                    <div class="fire-level-badge"><div class="fire-level-dot" style="background:#d32f2f;"></div><span>Cấp V: Rất cao (≥ 40)</span></div>
+                                    <div class="fire-level-count">2 xã (Tả Van, Chế Tạo)</div>
+                                </div>
+                                <div class="fire-level-row" style="background:#fff3e0; color:#e65100;">
+                                    <div class="fire-level-badge"><div class="fire-level-dot" style="background:#f57c00;"></div><span>Cấp IV: Cao (30 - 39)</span></div>
+                                    <div class="fire-level-count">15 xã (Bản Hồ, Nậm Xé, Púng Luông...)</div>
+                                </div>
+                                <div class="fire-level-row" style="background:#fffde7; color:#f57f17;">
+                                    <div class="fire-level-badge"><div class="fire-level-dot" style="background:#fbc02d;"></div><span>Cấp III: Trung bình (20 - 29)</span></div>
+                                    <div class="fire-level-count">38 xã</div>
+                                </div>
+                                <div class="fire-level-row" style="background:#f1f8e9; color:#33691e;">
+                                    <div class="fire-level-badge"><div class="fire-level-dot" style="background:#689f38;"></div><span>Cấp II: Thấp (10 - 19)</span></div>
+                                    <div class="fire-level-count">35 xã</div>
+                                </div>
+                                <div class="fire-level-row" style="background:#e8f5e9; color:#1b5e20;">
+                                    <div class="fire-level-badge"><div class="fire-level-dot" style="background:#2e7d32;"></div><span>Cấp I: Rất thấp (&lt; 10)</span></div>
+                                    <div class="fire-level-count">9 xã</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:16px; padding-top:12px; border-top:1px solid #f1f5f9; font-size:0.84rem;">
+                            <b>Trực ban PCCCR 24/24h:</b> Duy trì lực lượng cơ động tại 2 Đội KLCĐ và 11 Hạt Kiểm lâm khu vực; kiểm soát nghiêm ngặt người ra vào các khu rừng đặc dụng Fansipan, Bát Xát và Mù Cang Chải.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid Hàng 2: Mục đích sử dụng 4 loại rừng & Chỉ tiêu KT-XH 2026 -->
+            <div class="dashboard-grid-2col">
+                <!-- KHỐI 3: CƠ CẤU 4 LOẠI RỪNG THEO MỤC ĐÍCH SỬ DỤNG (Biểu 1) -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span class="card-title-icon">📊</span>
+                            Diện tích rừng phân theo mục đích sử dụng (Biểu 1 - QĐ 537)
+                        </div>
+                        <a class="card-action-link" onclick="App.switchAction('action-2')">Bảng số liệu chi tiết →</a>
+                    </div>
+                    <div class="card-body">
+                        <div id="overview-purpose-bars" class="bar-chart-list"></div>
+                    </div>
+                </div>
+
+                <!-- KHỐI 4: KẾT QUẢ SẢN XUẤT LÂM NGHIỆP 2026 (QĐ 2336/QĐ-UBND) -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span class="card-title-icon">📈</span>
+                            Chỉ tiêu & Kết quả sản xuất lâm nghiệp (Cập nhật 2026)
+                        </div>
+                        <a class="card-action-link" onclick="App.switchAction('action-2'); App.switchSubTab('action-2', 'tab-vung-trong-diem');">Xem vùng trọng điểm →</a>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;">
+                            <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:var(--radius-sm);">
+                                <div style="font-size:1.35rem; font-weight:800; color:#166534;">13.241,6 ha</div>
+                                <div style="font-size:0.82rem; font-weight:700; color:#15803d;">Trồng rừng tập trung (Đạt 94,6% KH 14.000 ha)</div>
+                            </div>
+                            <div style="background:#eff6ff; border:1px solid #bfdbfe; padding:12px; border-radius:var(--radius-sm);">
+                                <div style="font-size:1.35rem; font-weight:800; color:#1d4ed8;">961.815 m³</div>
+                                <div style="font-size:0.82rem; font-weight:700; color:#1e40af;">Khai thác gỗ (KH năm: 1.130.000 m³)</div>
+                            </div>
+                            <div style="background:#fffbeb; border:1px solid #fde68a; padding:12px; border-radius:var(--radius-sm);">
+                                <div style="font-size:1.35rem; font-weight:800; color:#b45309;">39.501 tấn</div>
+                                <div style="font-size:0.82rem; font-weight:700; color:#92400e;">Vỏ quế khô (Cành lá: 110.426 tấn)</div>
+                            </div>
+                            <div style="background:#faf5ff; border:1px solid #e9d5ff; padding:12px; border-radius:var(--radius-sm);">
+                                <div style="font-size:1.35rem; font-weight:800; color:#7e22ce;">276,29 tỷ đ</div>
+                                <div style="font-size:0.82rem; font-weight:700; color:#6b21a8;">Thu tiền DVMTR (QĐ 521/QĐ-UBND)</div>
+                            </div>
+                        </div>
+
+                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:var(--radius-sm); padding:10px 14px; margin-top:14px; font-size:0.84rem; line-height:1.6;">
+                            <b>Giá trị sản xuất lâm nghiệp:</b> Đạt <b>4.437,55 tỷ đồng</b>, tốc độ tăng trưởng 8,6%/năm theo Quyết định số 2336/QĐ-UBND. Toàn tỉnh có <b>147.600 ha quế</b> và <b>296.000 ha rừng nguyên liệu gỗ</b>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             ACTION 2: DỮ LIỆU RỪNG (TRA CỨU 99 XÃ & BIỂU 1, 2, 3)
+             =================================================================== -->
+        <section id="action-2" class="action-section" style="display:none;">
+            <div class="sub-nav-wrapper">
+                <button class="sub-nav-btn active" data-subtab="tab-ht-rung" onclick="App.switchSubTab('action-2', 'tab-ht-rung')">Biểu 1: Mục đích sử dụng</button>
+                <button class="sub-nav-btn" data-subtab="tab-99-xa" onclick="App.switchSubTab('action-2', 'tab-99-xa')">Biểu 3: Toàn bộ 99 Xã/Phường</button>
+                <button class="sub-nav-btn" data-subtab="tab-chu-quanly" onclick="App.switchSubTab('action-2', 'tab-chu-quanly')">Biểu 2: Theo chủ quản lý</button>
+                <button class="sub-nav-btn" data-subtab="tab-don-vi-hat" onclick="App.switchSubTab('action-2', 'tab-don-vi-hat')">11 Hạt Kiểm lâm khu vực</button>
+                <button class="sub-nav-btn" data-subtab="tab-vung-trong-diem" onclick="App.switchSubTab('action-2', 'tab-vung-trong-diem')">Vùng Quế, Gỗ, Măng, Sơn Tra</button>
+                <button class="sub-nav-btn" data-subtab="tab-du-lich-st" onclick="App.switchSubTab('action-2', 'tab-du-lich-st')">Du lịch sinh thái (QĐ 1382)</button>
+            </div>
+
+            <!-- Sub-tab 1: Biểu 1 Mục đích sử dụng -->
+            <div class="sub-tab-content" data-tab-content="tab-ht-rung" style="display:block;">
+                <div class="dashboard-grid-2col" style="grid-template-columns: 1.3fr 0.7fr;">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-title">Biểu 1: Diện tích rừng và chưa thành rừng phân theo mục đích sử dụng (QĐ 537)</div>
+                            <button class="action-btn" onclick="App.exportDataToCSV()">Xuất bảng</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:35px; text-align:center;">TT</th>
+                                            <th>Phân loại rừng</th>
+                                            <th style="text-align:right;">Tổng diện tích (ha)</th>
+                                            <th style="text-align:right;">Tỷ lệ (%)</th>
+                                            <th style="text-align:right;">Rừng tự nhiên</th>
+                                            <th style="text-align:right;">Đã thành rừng</th>
+                                            <th style="text-align:right;">Chưa thành rừng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-forest-purpose-body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-title">Cơ cấu 4 loại rừng toàn tỉnh</div>
+                        </div>
+                        <div class="card-body" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                            <canvas id="donut-forest-purpose"></canvas>
+                            <div style="margin-top:14px; font-size:0.83rem; width:100%; display:flex; flex-direction:column; gap:5px;">
+                                <div style="display:flex; justify-content:space-between;">
+                                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffc107;margin-right:6px;"></span>Rừng sản xuất:</span>
+                                    <b>414.558,8 ha (48,18%)</b>
+                                </div>
+                                <div style="display:flex; justify-content:space-between;">
+                                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#0d6efd;margin-right:6px;"></span>Rừng phòng hộ:</span>
+                                    <b>279.401,7 ha (32,47%)</b>
+                                </div>
+                                <div style="display:flex; justify-content:space-between;">
+                                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#198754;margin-right:6px;"></span>Rừng đặc dụng:</span>
+                                    <b>94.212,3 ha (10,95%)</b>
+                                </div>
+                                <div style="display:flex; justify-content:space-between;">
+                                    <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#fd7e14;margin-right:6px;"></span>Mục đích khác:</span>
+                                    <b>72.321,5 ha (8,40%)</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-tab 2: Toàn bộ 99 xã/phường (Biểu 3) -->
+            <div class="sub-tab-content" data-tab-content="tab-99-xa" style="display:none;">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-title">Biểu 3: Tổng hợp diện tích và tỷ lệ che phủ rừng 99 xã, phường, thị trấn tỉnh Lào Cai</div>
+                        <span id="count-99-xa" class="badge badge-success">99 / 99 xã, phường</span>
+                    </div>
+                    <div class="card-body">
+                        <!-- Bộ lọc và tra cứu xã -->
+                        <div class="filter-bar">
+                            <div class="filter-group">
+                                <label for="select-99-xa-khuvuc">Khu vực địa bàn:</label>
+                                <select id="select-99-xa-khuvuc" class="filter-select" onchange="App.filter99Communes()">
+                                    <option value="all">-- Toàn tỉnh (99 xã) --</option>
+                                    <option value="Bát Xát">Khu vực Bát Xát</option>
+                                    <option value="Sa Pa">Khu vực Sa Pa</option>
+                                    <option value="Bảo Thắng">Khu vực Bảo Thắng</option>
+                                    <option value="Bảo Yên">Khu vực Bảo Yên</option>
+                                    <option value="Bắc Hà">Khu vực Bắc Hà</option>
+                                    <option value="Văn Bàn">Khu vực Văn Bàn</option>
+                                    <option value="Trấn Yên">Khu vực Trấn Yên</option>
+                                    <option value="Văn Yên">Khu vực Văn Yên</option>
+                                    <option value="Văn Chấn">Khu vực Văn Chấn</option>
+                                    <option value="Lục Yên">Khu vực Lục Yên</option>
+                                    <option value="Yên Bình">Khu vực Yên Bình</option>
+                                    <option value="Mù Cang Chải">Khu vực Mù Cang Chải</option>
+                                    <option value="Trạm Tấu">Khu vực Trạm Tấu</option>
+                                    <option value="TP Lào Cai">TP Lào Cai</option>
+                                    <option value="TP Yên Bái">TP Yên Bái</option>
+                                    <option value="TX Nghĩa Lộ">TX Nghĩa Lộ</option>
+                                </select>
+                            </div>
+
+                            <div class="filter-group" style="flex:1;">
+                                <input type="text" id="search-99-xa-keyword" class="filter-input" style="width:100%;" placeholder="Gõ tên xã/phường để lọc (ví dụ: Tả Van, Chế Tạo, Mậu A, Phong Dụ...)" oninput="App.filter99Communes()" />
+                            </div>
+
+                            <button class="action-btn primary" onclick="App.exportDataToCSV()">
+                                Xuất file CSV 99 xã
+                            </button>
+                        </div>
+
+                        <!-- Bảng dữ liệu 99 xã -->
+                        <div class="table-responsive" style="max-height: 540px; overflow-y:auto;">
+                            <table class="custom-table">
+                                <thead style="position:sticky; top:0; z-index:2; background:#f8fafc;">
+                                    <tr>
+                                        <th style="width:35px; text-align:center;">STT</th>
+                                        <th>Tên Xã / Phường</th>
+                                        <th>Khu vực huyện/thị</th>
+                                        <th style="text-align:right;">Tổng DT tự nhiên (ha)</th>
+                                        <th style="text-align:right;">Diện tích có rừng (ha)</th>
+                                        <th style="text-align:right;">Rừng tự nhiên</th>
+                                        <th style="text-align:right;">Rừng trồng</th>
+                                        <th style="text-align:right;">Độ che phủ</th>
+                                        <th style="text-align:center;">Chi tiết</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-99-xa-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-tab 3: Biểu 2 Chủ quản lý -->
+            <div class="sub-tab-content" data-tab-content="tab-chu-quanly" style="display:none;">
+                <div class="dashboard-card">
+                    <div class="card-header"><div class="card-title">Biểu 2: Phân bố diện tích rừng theo 8 nhóm đối tượng chủ quản lý</div></div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:35px; text-align:center;">STT</th>
+                                        <th>Chủ quản lý / Tổ chức</th>
+                                        <th style="text-align:right;">Tổng diện tích (ha)</th>
+                                        <th style="text-align:right;">Rừng tự nhiên</th>
+                                        <th style="text-align:right;">Rừng trồng</th>
+                                        <th style="text-align:right;">Tỷ lệ (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-forest-owner-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-tab 4: 11 Hạt Kiểm lâm khu vực -->
+            <div class="sub-tab-content" data-tab-content="tab-don-vi-hat" style="display:none;">
+                <div class="dashboard-card">
+                    <div class="card-header"><div class="card-title">Số liệu lâm nghiệp quản lý bởi 11 Hạt Kiểm lâm khu vực toàn tỉnh</div></div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:35px; text-align:center;">STT</th>
+                                        <th>Tên Hạt Kiểm lâm</th>
+                                        <th>Địa bàn phụ trách</th>
+                                        <th style="text-align:right;">Tổng diện tích (ha)</th>
+                                        <th style="text-align:right;">Rừng tự nhiên</th>
+                                        <th style="text-align:right;">Rừng trồng</th>
+                                        <th style="text-align:right;">Độ che phủ</th>
+                                        <th style="text-align:center;">Biên chế</th>
+                                        <th style="text-align:center;">Cấp cháy</th>
+                                        <th style="text-align:center;">Xem</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-forest-district-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-tab 5: Vùng trọng điểm Quế, Gỗ, Măng, Sơn Tra -->
+            <div class="sub-tab-content" data-tab-content="tab-vung-trong-diem" style="display:none;">
+                <div class="dashboard-card">
+                    <div class="card-header"><div class="card-title">Các vùng kinh tế sinh thái lâm nghiệp trọng điểm tỉnh Lào Cai mới</div></div>
+                    <div class="card-body">
+                        <div id="vung-trong-diem-container" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-tab 6: Du lịch sinh thái & DVMTR -->
+            <div class="sub-tab-content" data-tab-content="tab-du-lich-st" style="display:none;">
+                <div class="dashboard-card">
+                    <div class="card-header"><div class="card-title">Đề án Du lịch sinh thái trong rừng đặc dụng và phòng hộ (QĐ 1382/QĐ-UBND)</div></div>
+                    <div class="card-body">
+                        <p style="margin-bottom:12px;"><b>Tổng quy mô:</b> 74 Dự án thuê môi trường rừng với tổng diện tích <b>5.723,0 ha</b>.</p>
+                        <div id="dlst-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             ACTION 3: CẢNH BÁO & BẢO VỆ RỪNG
+             =================================================================== -->
+        <section id="action-3" class="action-section" style="display:none;">
+            <div class="sub-nav-wrapper">
+                <button class="sub-nav-btn active" data-subtab="tab-cb-hom-nay" onclick="App.switchSubTab('action-3', 'tab-cb-hom-nay')">Bản đồ cảnh báo FWI hôm nay</button>
+                <button class="sub-nav-btn" data-subtab="tab-du-bao-3-ngay" onclick="App.switchSubTab('action-3', 'tab-du-bao-3-ngay')">Dự báo 3 ngày tới</button>
+                <button class="sub-nav-btn" data-subtab="tab-vi-pham-ln" onclick="App.switchSubTab('action-3', 'tab-vi-pham-ln')">Xử lý vi phạm (53 vụ việc)</button>
+            </div>
+
+            <div class="sub-tab-content" data-tab-content="tab-cb-hom-nay" style="display:block;">
+                <div class="dashboard-grid-2col" style="grid-template-columns: 1.1fr 0.9fr;">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-title">🔥 Bản đồ nhiệt FWI tỉnh Lào Cai (sáp nhập Yên Bái)</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="map-container">
+                                <div id="fire-warning-map-container" class="map-svg-wrapper"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header"><div class="card-title">⚠️ Danh sách địa bàn nguy cơ cháy rừng cao</div></div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:35px; text-align:center;">STT</th>
+                                            <th>Xã / Phường</th>
+                                            <th>Hạt Kiểm lâm phụ trách</th>
+                                            <th style="text-align:center;">Chỉ số FWI</th>
+                                            <th style="text-align:center;">Cấp nguy cơ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-fire-danger-body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-tab-content" data-tab-content="tab-du-bao-3-ngay" style="display:none;">
+                <div class="dashboard-card">
+                    <div class="card-header"><div class="card-title">Dự báo chỉ số FWI 3 ngày tới</div></div>
+                    <div class="card-body">
+                        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
+                            <div style="background:#fff7ed; border:1px solid #fed7aa; padding:16px; border-radius:var(--radius-md);">
+                                <h4 style="color:#c2410c;">Ngày mai (25/09/2026)</h4>
+                                <div style="font-size:1.8rem; font-weight:800; color:#ea580c; margin:6px 0;">FWI: 37,5</div>
+                                <span class="badge badge-warning">Cấp IV - Cao</span>
+                                <p style="font-size:0.85rem; margin-top:8px;">Nhiệt độ 30°C, gió Tây Nam cấp 3. Mù Cang Chải, Sa Pa nguy cơ cao.</p>
+                            </div>
+                            <div style="background:#fff7ed; border:1px solid #fed7aa; padding:16px; border-radius:var(--radius-md);">
+                                <h4 style="color:#c2410c;">Ngày 26/09/2026</h4>
+                                <div style="font-size:1.8rem; font-weight:800; color:#ea580c; margin:6px 0;">FWI: 35,0</div>
+                                <span class="badge badge-warning">Cấp IV - Cao</span>
+                                <p style="font-size:0.85rem; margin-top:8px;">Nhiệt độ 29°C. Cảnh giác tại Văn Bàn, Trạm Tấu.</p>
+                            </div>
+                            <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:16px; border-radius:var(--radius-md);">
+                                <h4 style="color:#15803d;">Ngày 27/09/2026</h4>
+                                <div style="font-size:1.8rem; font-weight:800; color:#16a34a; margin:6px 0;">FWI: 24,2</div>
+                                <span class="badge badge-success">Cấp III - Trung bình</span>
+                                <p style="font-size:0.85rem; margin-top:8px;">Mưa rào diện rộng tại lưu vực sông Hồng và hồ Thác Bà.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-tab-content" data-tab-content="tab-vi-pham-ln" style="display:none;">
+                <div class="dashboard-card">
+                    <div class="card-header"><div class="card-title">Kết quả điều tra, xử lý vi phạm pháp luật lâm nghiệp (Cập nhật 5 tháng đầu năm 2026)</div></div>
+                    <div class="card-body">
+                        <p><b>Tổng số vụ việc phát hiện và xử lý:</b> <b>53 vụ</b> (Chi cục Kiểm lâm xử lý 35 vụ; UBND cấp xã xử lý 18 vụ).</p>
+                        <ul style="margin-left:20px; line-height:1.9; margin-top:8px;">
+                            <li>Khai thác rừng trái pháp luật: <b>11 vụ</b> | Phá rừng, lấn chiếm rừng: <b>22 vụ</b> | Vận chuyển lâm sản trái pháp luật: <b>05 vụ</b>.</li>
+                            <li>Tịch thu tang vật: <b>8,325 m³ gỗ</b> (quý hiếm 0,79 m³), 07 cưa xăng, 04 dao phát.</li>
+                            <li>Tổng số tiền phạt thu nộp ngân sách Nhà nước: <b>274,85 triệu đồng</b>.</li>
+                            <li>Thực hiện giám định tư pháp: <b>04 vụ án hình sự</b> về lâm nghiệp tại Mù Cang Chải, Mường Lai, Púng Luông.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             ACTION 4: TỔ CHỨC & ĐƠN VỊ
+             =================================================================== -->
+        <section id="action-4" class="action-section" style="display:none;">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-title">Cơ cấu tổ chức bộ máy Chi cục Kiểm lâm tỉnh Lào Cai mới (Số liệu T5/2026)</div>
+                    <span class="badge badge-info">Tổng biên chế: 461 CCVC thực tế</span>
+                </div>
+                <div class="card-body org-chart-wrapper">
+                    <!-- Đỉnh: Lãnh đạo Chi cục -->
+                    <div class="org-card-root" onclick="App.showOrgDetail('lanhdao', 'Chi cục Kiểm lâm tỉnh Lào Cai')">
+                        <div class="org-root-title">Chi cục Kiểm lâm tỉnh Lào Cai</div>
+                        <div class="org-root-leaders">01 Chi cục trưởng & 02 Phó Chi cục trưởng</div>
+                        <div style="font-size:0.75rem; margin-top:4px; opacity:0.85;">Biên chế: 461/472 (422 Công chức, 17 Viên chức, 22 HĐ)</div>
+                    </div>
+
+                    <div class="org-connector-v"></div>
+
+                    <!-- 3 Cột chức năng -->
+                    <div class="org-branch-grid">
+                        <div class="org-branch-column">
+                            <div class="org-branch-header">4 Phòng Chuyên Môn</div>
+                            <div id="org-phong-list" class="org-node-list"></div>
+                        </div>
+
+                        <div class="org-branch-column">
+                            <div class="org-branch-header">2 Đội Cơ Động & 5 Ban QL Khu Bảo Tồn</div>
+                            <div id="org-tructhuoc-list" class="org-node-list"></div>
+                        </div>
+
+                        <div class="org-branch-column">
+                            <div class="org-branch-header">11 Hạt Kiểm Lâm Khu Vực</div>
+                            <div id="org-hat-list" class="org-node-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             ACTION 5: THỦ TỤC HÀNH CHÍNH (49 TTHC)
+             =================================================================== -->
+        <section id="action-5" class="action-section" style="display:none;">
+            <div class="sub-nav-wrapper">
+                <button class="sub-nav-btn active" data-subtab="tab-tra-cuu-hs" onclick="App.switchSubTab('action-5', 'tab-tra-cuu-hs')">Tra cứu hồ sơ đang thụ lý</button>
+                <button class="sub-nav-btn" data-subtab="tab-danhmuc-tthc" onclick="App.switchSubTab('action-5', 'tab-danhmuc-tthc')">Danh mục 49 TTHC ngành Lâm nghiệp</button>
+            </div>
+
+            <div class="sub-tab-content" data-tab-content="tab-tra-cuu-hs" style="display:block;">
+                <div class="dashboard-card">
+                    <div class="card-header"><div class="card-title">Tra cứu tiến độ hồ sơ TTHC thực tế</div></div>
+                    <div class="card-body">
+                        <div class="filter-bar">
+                            <div class="filter-group" style="flex:1;">
+                                <input type="text" id="search-hs-keyword" class="filter-input" style="width:100%;" placeholder="Nhập mã hồ sơ (ví dụ: HSC123456, HSC123457), tên doanh nghiệp..." oninput="App.searchHoSo()" />
+                            </div>
+                            <button class="btn-filter-submit" onclick="App.searchHoSo()">Tra cứu</button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:35px; text-align:center;">STT</th>
+                                        <th>Mã hồ sơ</th>
+                                        <th>Tên thủ tục hành chính</th>
+                                        <th>Ngày nhận</th>
+                                        <th style="text-align:center;">Tình trạng</th>
+                                        <th>Hạn trả</th>
+                                        <th style="text-align:center;">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-tthc-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-tab-content" data-tab-content="tab-danhmuc-tthc" style="display:none;">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-title">Danh mục 49 TTHC Lâm nghiệp trên Hệ thống thông tin giải quyết TTHC tập trung cấp Bộ</div>
+                        <span id="count-tthc-danhmuc" class="badge badge-purple">49 TTHC</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="max-height: 500px; overflow-y:auto;">
+                            <table class="custom-table">
+                                <thead style="position:sticky; top:0; z-index:2; background:#f8fafc;">
+                                    <tr>
+                                        <th style="width:35px; text-align:center;">STT</th>
+                                        <th>Mã TTHC</th>
+                                        <th>Tên thủ tục hành chính</th>
+                                        <th>Cấp thẩm quyền</th>
+                                        <th>Thời hạn</th>
+                                        <th style="text-align:center;">Mức độ</th>
+                                        <th style="text-align:center;">Mẫu hồ sơ</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-danhmuc-tthc-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             ACTION 6: PHÁP LUẬT & TÀI LIỆU
+             =================================================================== -->
+        <section id="action-6" class="action-section" style="display:none;">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-title">Văn bản quy phạm pháp luật & Quyết định số 537/QĐ-UBND</div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:35px; text-align:center;">STT</th>
+                                    <th>Số ký hiệu</th>
+                                    <th>Tên văn bản / Trích yếu</th>
+                                    <th>Ngày ban hành</th>
+                                    <th style="text-align:center;">Hiệu lực</th>
+                                    <th style="text-align:center;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-legal-docs-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 5. MODAL DIALOG -->
+    <div id="app-modal-overlay" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modal-title">Thông tin chi tiết</h3>
+                <button type="button" id="modal-close-btn" class="modal-close-btn">&times;</button>
+            </div>
+            <div id="modal-body-content" class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="action-btn" onclick="document.getElementById('app-modal-overlay').classList.remove('active')">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. SITE FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Chi Cục Kiểm Lâm Tỉnh Lào Cai</h4>
+                <p>Cơ quan quản lý chuyên ngành về lâm nghiệp, bảo vệ rừng, phòng cháy chữa cháy rừng trên toàn địa bàn tỉnh Lào Cai mới sau sáp nhập Yên Bái.</p>
+                <p style="margin-top:8px;"><b>Trụ sở chính:</b> Đại lộ Trần Hưng Đạo, phường Nam Cường, TP Lào Cai.</p>
+                <p><b>Đường dây nóng PCCCR:</b> <b style="color:#ef4444;">0214.3820.130</b> (Trực ban 24/7)</p>
+            </div>
+            <div class="footer-col">
+                <h4>Phân Hệ Nổi Bật</h4>
+                <ul class="footer-links">
+                    <li><a href="javascript:void(0)" onclick="App.switchAction('action-1')">Bản đồ hành chính tỉnh mới</a></li>
+                    <li><a href="javascript:void(0)" onclick="App.switchAction('action-2'); App.switchSubTab('action-2', 'tab-99-xa');">Tra cứu 99 xã, phường (Biểu 3)</a></li>
+                    <li><a href="javascript:void(0)" onclick="App.switchAction('action-4')">11 Hạt Kiểm lâm khu vực</a></li>
+                    <li><a href="javascript:void(0)" onclick="App.switchAction('action-5')">49 Thủ tục hành chính</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Căn Cứ Pháp Lý</h4>
+                <p>Quyết định số 537/QĐ-UBND ngày 27/02/2026 của UBND tỉnh Lào Cai công bố hiện trạng rừng năm 2025.</p>
+                <p style="margin-top:6px;">Quyết định số 2336/QĐ-UBND giao chỉ tiêu kế hoạch KT-XH năm 2026.</p>
+                <p style="margin-top:6px;">Quyết định số 1382/QĐ-UBND phê duyệt Đề án Du lịch sinh thái.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Chi cục Kiểm lâm tỉnh Lào Cai. Hệ thống thông tin điều hành và công khai dữ liệu lâm nghiệp.
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/data.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
