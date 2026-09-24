@@ -111,7 +111,7 @@ with st.sidebar:
     menu = st.radio(
         "CHỌN PHÂN HỆ ĐIỀU HÀNH:",
         [
-            "🏠 1. Tổng quan điều hành",
+            "🏠 1. Tổng quan",
             "🌲 2. Dữ liệu rừng và đất lâm nghiệp",
             "🔥 3. Cảnh cháy rừng & Vi phạm",
             "🏛️ 4. Tổ chức bộ máy",
@@ -142,7 +142,7 @@ st.markdown("""
 # ==============================================================================
 # PHÂN HỆ 1: TỔNG QUAN ĐIỀU HÀNH (DASHBOARD)
 # ==============================================================================
-if menu == "🏠 1. Tổng quan điều hành":
+if menu == "🏠 1. Tổng quan":
     st.markdown("### 📊 Số liệu lâm nghiệp toàn tỉnh (Quyết định 537/QĐ-UBND)")
     
     kpi1, kpi2, kpi3, kpi4 = st.columns(4)
@@ -543,7 +543,7 @@ elif menu == "🏛️ 4. Tổ chức bộ máy":
     
     c_root1, c_root2, c_root3 = st.columns([1, 2, 1])
     with c_root2:
-        st.success("👑 **LÃNH ĐẠO CHI CỤC KIỂM LÂM TỈNH LÀO CAI**  \n01 Chi cục trưởng: Nguyễn Việt Hà\n02 Phó Chi cục trưởng  \n*Số 333, đường Điện Biên, phường Yên Bái, tỉnh Lào Cai*")
+        st.success("👑 **LÃNH ĐẠO CHI CỤC KIỂM LÂM TỈNH LÀO CAI**  \n01 Chi cục trưởng; 02 Phó Chi cục trưởng  \n*Số 333, đường Điện Biên, phường Yên Bái, tỉnh Lào Cai*")
         
     st.markdown("---")
     
@@ -565,12 +565,17 @@ elif menu == "🏛️ 4. Tổ chức bộ máy":
         
     with col_h:
         st.markdown("#### 🌲 Hạt Kiểm lâm khu vực")
-        st.markdown("- Hạt KL Bát Xát (41 BC) ; Hạt KL Sa Pa")
-        st.markdown("- Hạt KL Bảo Yên (29 BC) ; Hạt KL Bảo Thắng (28 BC)")
-        st.markdown("- Hạt KL Bắc Hà (39 BC) ; Hạt KL Văn Bàn (38 BC)")
-        st.markdown("- Hạt KL Trấn Yên (49 BC) ; Hạt KL Nghĩa Lộ (42 BC)")
-        st.markdown("- Hạt KL Lục Yên (34 BC) ; Hạt KL Mù Cang Chải (25 BC)")
-        st.markdown("- Hạt KL KBT Bát Xát (09 BC); KBT HL-VB (11 BC)")
+        st.markdown("1. HKL Bát Xát (41 BC)")
+        st.markdown("2. HKL Bảo Yên (29 BC)")
+        st.markdown("3. HKL Bảo Thắng (28 BC)")
+        st.markdown("4. HKL Bắc Hà (39 BC)")
+        st.markdown("5. HKL Văn Bàn (38 BC)")
+        st.markdown("6. HKL Trấn Yên (49 BC)")
+        st.markdown("7. HKL Nghĩa Lộ (42 BC)")
+        st.markdown("8. HKL Lục Yên (34 BC)")
+        st.markdown("9. HKL Mù Cang Chải (25 BC)")
+        st.markdown("10.HKL KBT Bát Xát (09 BC)")
+        st.markdown("11. HKL KBT HL-VB (11 BC)")
 
 # ==============================================================================
 # PHÂN HỆ 5: THỦ TỤC HÀNH CHÍNH (49 TTHC)
