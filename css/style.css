@@ -612,6 +612,63 @@ body {
     stroke: #f59e0b;
 }
 
+/* Trạng thái được chọn của vùng bản đồ khi click chú giải: viền đỏ vùng trong suốt */
+.map-district.highlighted-area {
+    fill: transparent !important;
+    stroke: #ef4444 !important;
+    stroke-width: 3.5px !important;
+    stroke-linejoin: round !important;
+    filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.5)) !important;
+}
+
+/* Chú giải tương tác 11 Hạt Kiểm lâm */
+.interactive-hat-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 0.82rem;
+    color: #334155;
+}
+
+.legend-hat-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.legend-hat-item:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+/* Chữ hiện nền màu vàng cho chú giải được chọn */
+.legend-hat-item.selected {
+    background-color: #fef08a !important; /* Nền vàng */
+    color: #854d0e !important;             /* Chữ vàng sẫm */
+    font-weight: 700 !important;
+    border: 1.5px solid #eab308 !important; /* Viền vàng */
+    box-shadow: 0 2px 6px rgba(234, 179, 8, 0.3) !important;
+}
+
+.legend-hat-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.2);
+    display: inline-block;
+    flex-shrink: 0;
+}
+
 .map-legend {
     display: flex;
     flex-wrap: wrap;

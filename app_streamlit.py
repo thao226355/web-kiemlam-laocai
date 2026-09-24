@@ -264,9 +264,23 @@ if menu == "🏠 1. Tổng quan điều hành":
                     choro_fn = getattr(px, 'choropleth_map', getattr(px, 'choropleth_mapbox', None))
                     
                     if map_mode == "🏛️ 11 Hạt Kiểm lâm":
+                        hat_color_map = {
+                            'Hạt KL Bát Xát': '#2563eb',
+                            'Hạt KL Khu bảo tồn Bát Xát': '#06b6d4',
+                            'Hạt KL KBT Hoàng Liên - Văn Bàn': '#ec4899',
+                            'Hạt KL Bảo Thắng': '#f97316',
+                            'Hạt KL Bắc Hà': '#a855f7',
+                            'Hạt KL Văn Bàn': '#10b981',
+                            'Hạt KL Bảo Yên': '#eab308',
+                            'Hạt KL Trấn Yên': '#0284c7',
+                            'Hạt KL Lục Yên': '#84cc16',
+                            'Hạt KL Mù Cang Chải': '#ef4444',
+                            'Hạt KL Nghĩa Lộ': '#8b5cf6'
+                        }
                         fig_map = choro_fn(
                             df_99_gis, geojson=gj_data, locations="ten", featureidkey="properties.xa",
                             color="hat_kl",
+                            color_discrete_map=hat_color_map,
                             hover_name="ten",
                             hover_data={"hat_kl": True, "che_phu": ":.1f%", "dt_rung": ":,.1f", "cap_chay": True},
                             zoom=7.1, center={"lat": 22.05, "lon": 104.30},

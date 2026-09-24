@@ -790,12 +790,14 @@ const App = {
 
     showMapMode(mode) {
         const btnImg = document.getElementById('btn-map-image');
+        const btnHat = document.getElementById('btn-map-hat');
         const btnCover = document.getElementById('btn-map-cover');
         const btnFire = document.getElementById('btn-map-fire');
         const viewImg = document.getElementById('image-map-view');
         const viewVec = document.getElementById('vector-map-view');
 
         if (btnImg) btnImg.classList.remove('active');
+        if (btnHat) btnHat.classList.remove('active');
         if (btnCover) btnCover.classList.remove('active');
         if (btnFire) btnFire.classList.remove('active');
 
@@ -804,6 +806,7 @@ const App = {
             if (viewImg) viewImg.style.display = 'flex';
             if (viewVec) viewVec.style.display = 'none';
         } else {
+            if (mode === 'hat' && btnHat) btnHat.classList.add('active');
             if (mode === 'status' && btnCover) btnCover.classList.add('active');
             if (mode === 'fire' && btnFire) btnFire.classList.add('active');
             if (viewImg) viewImg.style.display = 'none';

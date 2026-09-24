@@ -181,8 +181,9 @@
                             <span class="card-title-icon">🗺️</span>
                             Bản đồ hành chính & hiện trạng lâm nghiệp tỉnh Lào Cai
                         </div>
-                        <div style="display:flex; gap:6px;">
+                        <div style="display:flex; gap:6px; flex-wrap:wrap;">
                             <button class="action-btn active" id="btn-map-image" onclick="App.showMapMode('image')">Bản đồ Hiện trạng</button>
+                            <button class="action-btn" id="btn-map-hat" onclick="App.showMapMode('hat')">11 Hạt Kiểm lâm</button>
                             <button class="action-btn" id="btn-map-cover" onclick="App.showMapMode('status')">Độ che phủ</button>
                             <button class="action-btn" id="btn-map-fire" onclick="App.showMapMode('fire')">Cấp cháy FWI</button>
                         </div>
@@ -211,15 +212,8 @@
                         </div>
 
                         <!-- Khung Bản đồ Vector SVG tương tác -->
-                        <div id="vector-map-view" class="map-container" style="display:none;">
+                        <div id="vector-map-view" class="map-container" style="display:none; flex-direction:column;">
                             <div id="overview-map-container" class="map-svg-wrapper"></div>
-                            <div class="map-legend">
-                                <div class="legend-item"><div class="legend-color" style="background:#0f441c;"></div><span>Độ che phủ rất cao (≥80%)</span></div>
-                                <div class="legend-item"><div class="legend-color" style="background:#1b5e20;"></div><span>Che phủ cao (68 - 79%)</span></div>
-                                <div class="legend-item"><div class="legend-color" style="background:#2e7d32;"></div><span>Che phủ trung bình (60 - 67%)</span></div>
-                                <div class="legend-item"><div class="legend-color" style="background:#7cb342;"></div><span>Dưới 60%</span></div>
-                                <div class="legend-item"><span style="color:#0284c7; font-weight:700;">--- Sông Hồng & Hồ Thác Bà</span></div>
-                            </div>
                         </div>
 
                         <div style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; text-align:center;">
