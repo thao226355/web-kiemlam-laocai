@@ -205,21 +205,38 @@ if menu == "🏠 1. Tổng quan điều hành":
             color_col = "che_phu" if map_mode == "Tỷ lệ che phủ rừng (%)" else "fwi"
             color_scale = "Greens" if map_mode == "Tỷ lệ che phủ rừng (%)" else "YlOrRd"
             
-            fig_map = px.scatter_mapbox(
-                df_hat,
-                lat="lat",
-                lon="lon",
-                hover_name="ten",
-                hover_data={"dia_ban": True, "tong_dt": ":,.1f", "che_phu": ":.1f%", "fwi": True, "cap_chay": True, "lat": False, "lon": False},
-                color=color_col,
-                size="tong_dt",
-                size_max=35,
-                color_continuous_scale=color_scale,
-                zoom=7.3,
-                center={"lat": 22.10, "lon": 104.25},
-                mapbox_style="carto-positron",
-                height=440
-            )
+            if hasattr(px, 'scatter_map'):
+                fig_map = px.scatter_map(
+                    df_hat,
+                    lat="lat",
+                    lon="lon",
+                    hover_name="ten",
+                    hover_data={"dia_ban": True, "tong_dt": ":,.1f", "che_phu": ":.1f%", "fwi": True, "cap_chay": True, "lat": False, "lon": False},
+                    color=color_col,
+                    size="tong_dt",
+                    size_max=35,
+                    color_continuous_scale=color_scale,
+                    zoom=7.3,
+                    center={"lat": 22.10, "lon": 104.25},
+                    map_style="carto-positron",
+                    height=440
+                )
+            else:
+                fig_map = px.scatter_mapbox(
+                    df_hat,
+                    lat="lat",
+                    lon="lon",
+                    hover_name="ten",
+                    hover_data={"dia_ban": True, "tong_dt": ":,.1f", "che_phu": ":.1f%", "fwi": True, "cap_chay": True, "lat": False, "lon": False},
+                    color=color_col,
+                    size="tong_dt",
+                    size_max=35,
+                    color_continuous_scale=color_scale,
+                    zoom=7.3,
+                    center={"lat": 22.10, "lon": 104.25},
+                    mapbox_style="carto-positron",
+                    height=440
+                )
             fig_map.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
             st.plotly_chart(fig_map, use_container_width=True)
             st.caption("* Bản đồ định vị 11 Hạt Kiểm lâm khu vực và các Khu bảo tồn. Nhấp rê chuột để xem diện tích, tỷ lệ che phủ và chỉ số FWI.")
